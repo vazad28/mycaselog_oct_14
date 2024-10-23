@@ -1,0 +1,26 @@
+name: database
+description: App data package.
+version: 1.0.0+1
+publish_to: none
+
+environment:
+  sdk: '>=3.0.0-339.0.dev <4.0.0'
+
+dependencies:
+  collection: ^1.19.0
+  flutter:
+    sdk: flutter
+  realm: ^20.0.0
+  models:
+    path: ../models
+  authentication_client:
+    path: ../../packages/authentication_client/authentication_client
+  annotations:
+    path: ../annotations
+  cloud_firestore: ^5.4.4
+  shared_preferences: ^2.3.2
+  flutter_logger_plus: ^5.0.0
+  firebase_storage: ^12.3.3
+
+dev_dependencies:
+  very_good_analysis: ^6.0.0

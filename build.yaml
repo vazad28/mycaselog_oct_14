@@ -1,0 +1,49 @@
+# global_options:
+targets:
+  $default:
+    builders:
+      # Freezed package
+      freezed|freezed:
+        enabled: true
+        generate_for:
+          include:
+            - lib/**_provider.dart
+            - lib/**_model.dart
+            - lib/**_exceptions.dart
+          exclude:
+            - packages/**.dart
+            - packages-app/**.dart
+        options:
+          build_extensions:
+            '^lib/{{}}.dart': 'lib/generated/{{}}.freezed.dart'
+      # Json Serializable 
+      json_serializable:
+        options:
+          explicit_to_json: true
+      # Go router
+      go_router_builder:
+        generate_for:
+          - lib/**_routes.dart
+      # Realm
+      realm:realm_generator:
+        enabled: true
+        generate_for: 
+          exclude:
+            - lib/**.dart
+          include:
+            #- packages/**.dart
+            - packages-app/models/**.dart
+            - packages-app/database/**.dart
+      # Riverpod
+      riverpod:
+        generate_for:
+          include:
+            - lib/**_provider.dart
+          exclude:
+            - lib/**_routes.dart
+            - packages/**.dart
+            - packages-app/**.dart
+      source_gen|combining_builder:
+        options:
+          build_extensions:
+            '^lib/{{}}.dart': 'lib/generated/{{}}.g.dart'

@@ -1,0 +1,31 @@
+import 'package:flutter/material.dart';
+import 'package:l10n/l10n.dart';
+
+import 'dialog_model.dart';
+import 'dialog_widgets/adaptive_action.dart';
+
+class ConfirmDialogWidget extends StatelessWidget {
+  const ConfirmDialogWidget({required this.dialogModel, super.key});
+
+  final DialogModel dialogModel;
+
+  @override
+  Widget build(BuildContext context) {
+    return AlertDialog.adaptive(
+      title: dialogModel.title != null ? Text(dialogModel.title!) : null,
+      content: dialogModel.content,
+      actions: <Widget>[
+        adaptiveAction(
+          context: context,
+          onPressed: () => Navigator.pop(context, false),
+          child: Text(dialogModel.cancelActionText ?? S.current.cancel),
+        ),
+        adaptiveAction(
+          context: context,
+          onPressed: () => Navigator.pop(context, true),
+          child: Text(dialogModel.defaultActionText ?? S.current.ok),
+        ),
+      ],
+    );
+  }
+}

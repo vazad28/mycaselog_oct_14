@@ -1,0 +1,82 @@
+{
+  "project_info": {
+    "project_number": "1087406485181",
+    "project_id": "mycaselog-test-9e273",
+    "storage_bucket": "mycaselog-test-9e273.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1087406485181:android:e13042c428cfd549ef91d4",
+        "android_client_info": {
+          "package_name": "com.example.mycaselogtest"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1087406485181-jlpsa8a8a51htgdn1266f4hjb5eqttmk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBNWzXXPmGvdbZY93BrzwqqpMLFppaIsW0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1087406485181-jlpsa8a8a51htgdn1266f4hjb5eqttmk.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1087406485181-4n91gqgj4fsqca699kkjnipjfbqfg9nt.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.vik.mycaselogtest"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1087406485181:android:0f3665b0cc3149a8ef91d4",
+        "android_client_info": {
+          "package_name": "com.vik.mycaselogtest"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1087406485181-jlpsa8a8a51htgdn1266f4hjb5eqttmk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBNWzXXPmGvdbZY93BrzwqqpMLFppaIsW0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1087406485181-jlpsa8a8a51htgdn1266f4hjb5eqttmk.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1087406485181-4n91gqgj4fsqca699kkjnipjfbqfg9nt.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.vik.mycaselogtest"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

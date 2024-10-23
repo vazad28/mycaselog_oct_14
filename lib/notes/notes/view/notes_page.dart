@@ -1,0 +1,86 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:l10n/l10n.dart';
+import 'package:models/models.dart';
+import 'package:realm/realm.dart';
+import 'package:ui/ui.dart';
+
+import '../../../router/router.dart';
+import '../../../shared/widgets/widgets.dart';
+import '../../notes.dart';
+
+class NotesPage extends ConsumerStatefulWidget {
+  const NotesPage({super.key});
+
+  @override
+  ConsumerState<ConsumerStatefulWidget> createState() => _NotesPageState();
+}
+
+class _NotesPageState extends ConsumerState<NotesPage> {
+  final _scrollController = ScrollController();
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      key: const Key('__notes_page_scaffold_key__'),
+      backgroundColor: context.colorScheme.surface,
+      appBar: AppBar(
+        elevation: 0,
+        toolbarHeight: 0,
+        surfaceTintColor: context.colorScheme.surfaceTint,
+      ),
+      body: CustomScrollView(
+        controller: _scrollController,
+        physics: const BouncingScrollPhysics(
+          parent: AlwaysScrollableScrollPhysics(),
+        ),
+        slivers: const [
+          NotesAppBar(),
+          SliverPadding(
+            padding: EdgeInsets.all(AppSpacing.sm),
+            sliver: _NotesView(),
+          ),
+        ],
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+      floatingActionButton: ScrollReactiveFabButton(
+        _scrollController,
+        key: const Key('__notes_page_fab_key__'),
+        title: S.of(context).addNote,
+        onTap: () {
+          AddNoteRoute().push<void>(context);
+        },
+      ),
+    );
+  }
+}
+
+class _NotesView extends ConsumerWidget {
+  const _NotesView();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    return AsyncValueSliverWidget<RealmResultsChanges<NoteModel>>(
+      key: key,
+      value: ref.watch(notesNotifierProvider),
+      data: (data) {
+        if (data.results.isEmpty) {
+          return const SliverFillRemaining(
+            child: Loading(
+              text: 'No notes',
+            ),
+          );
+        }
+        return NotesView(
+          noteModels: data.results,
+        );
+      },
+    );
+  }
+}

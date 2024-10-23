@@ -1,0 +1,21 @@
+name: firebase_authentication_client
+description: Firebase authentication client package.
+version: 1.0.0+1
+publish_to: none
+
+environment:
+  sdk: '>=3.0.0-339.0.dev <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  firebase_auth: ^5.3.1
+  async: ^2.11.0
+  google_sign_in: ^6.2.1
+  authentication_client:
+    path: ../authentication_client
+  storage:
+    path: ../../storage
+
+dev_dependencies:
+  very_good_analysis: ^5.1.0

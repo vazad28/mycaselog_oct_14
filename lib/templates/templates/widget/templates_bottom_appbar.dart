@@ -1,0 +1,42 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:ui/ui.dart';
+
+import '../provider/templates_provider.dart';
+
+class TemplatesBottomAppBar extends ConsumerWidget
+    implements PreferredSizeWidget {
+  const TemplatesBottomAppBar({super.key});
+
+  @override
+  Size get preferredSize => const Size.fromHeight(kMinInteractiveDimension);
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    return Container(
+      color: context.colorScheme.surfaceContainerHighest,
+      height: kMinInteractiveDimension,
+      width: double.infinity,
+      child: Row(
+        children: [
+          const SizedBox(width: 16),
+          Expanded(
+            child: Text(
+              'Showing Templates',
+              style: Theme.of(context).textTheme.bodyLarge,
+            ),
+          ),
+          TextButton(
+            onPressed: () => ref
+                .watch(showActiveTemplatesProvider.notifier)
+                .update((cb) => !cb),
+            child: ref.watch(showActiveTemplatesProvider)
+                ? const Text('ACTIVE')
+                : const Text('IN-ACTIVE'),
+          ),
+          const SizedBox(width: 8),
+        ],
+      ),
+    );
+  }
+}

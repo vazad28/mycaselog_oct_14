@@ -7,7 +7,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:l10n/l10n.dart';
 import 'package:ui/ui.dart';
 
-import '../../shared/providers/providers.dart';
+import '../../app/providers/providers.dart';
 import '../signin.dart';
 
 part '../pages/email_register_page.dart';

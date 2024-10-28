@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:async/async.dart';
 import 'package:utils/utils.dart';
 
-import '../error_tracker/error_tracker.dart';
+import '../core.dart';
 
 class GenericException implements Exception {
   GenericException(this.err);
@@ -15,7 +15,7 @@ Future<Result<T>> runCatchAsync<T>(Future<T> Function() future) async {
   try {
     return Result.value(await future());
   } on Exception catch (e, st) {
-    unawaited(errorTracker.log(e, st));
+    errorTracker.log(e, st);
     return Result.error(e);
   } catch (err) {
     return Result.error(Exception(err));

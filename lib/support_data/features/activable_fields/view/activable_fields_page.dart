@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ui/ui.dart';
 
-import '../../../../shared/shared.dart';
 import '../../../support_data.dart';
 
 part './activable_fields_view.dart';

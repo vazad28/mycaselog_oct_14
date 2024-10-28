@@ -6,7 +6,7 @@ part of '../../../csv_export/provider/csv_export_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$csvExportNotifierHash() => r'f1a01ff23648f84d09efeda4afcbb449f1cd31f5';
+String _$csvExportNotifierHash() => r'4d299f4142ce88c7365110e9b5694dffdeb671ee';
 
 /// See also [CsvExportNotifier].
 @ProviderFor(CsvExportNotifier)
@@ -23,4 +23,4 @@ final csvExportNotifierProvider =
 
 typedef _$CsvExportNotifier = AutoDisposeNotifier<StateOf<void>>;
 // ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, inference_failure_on_uninitialized_variable, inference_failure_on_function_return_type, inference_failure_on_untyped_parameter, deprecated_member_use_from_same_package
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

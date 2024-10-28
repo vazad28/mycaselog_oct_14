@@ -4,10 +4,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:models/models.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:ui/ui.dart';
 import 'package:utils/utils.dart';
 
+import '../../../app/app.dart';
 import '../../../router/router.dart';
-import '../../../shared/shared.dart';
 
 part '../../../generated/notes/add_note/provider/add_note_provider.g.dart';
 part 'add_note_form_mixin.dart';
@@ -16,7 +17,7 @@ part 'add_note_form_mixin.dart';
 /// Note editor controller instance
 /// ////////////////////////////////////////////////////////////////////
 @riverpod
-QuillController noteController(NoteControllerRef ref) {
+QuillController noteController(Ref ref) {
   return QuillController.basic();
 }
 

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../providers/bottom_bar_visibility_provider.dart';
+import '../router.dart';
 
 class AppBottomNavBar extends ConsumerWidget {
   const AppBottomNavBar(this.navigationBar, {super.key});

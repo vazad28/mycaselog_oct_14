@@ -5,13 +5,6 @@ part 'note_model_equatable.g.dart';
 
 @JsonSerializable(explicitToJson: true)
 class NoteModelEquatable extends Equatable {
-  final String noteID;
-  final String? authorID;
-  final String? title;
-  final String? note;
-  final int removed;
-  final int createdAt;
-  final int timestamp;
 
   const NoteModelEquatable({
     required this.noteID,
@@ -26,6 +19,13 @@ class NoteModelEquatable extends Equatable {
   factory NoteModelEquatable.fromJson(Map<String, dynamic> json) {
     return _$NoteModelEquatableFromJson(json);
   }
+  final String noteID;
+  final String? authorID;
+  final String? title;
+  final String? note;
+  final int removed;
+  final int createdAt;
+  final int timestamp;
 
   @override
   List<Object?> get props => [

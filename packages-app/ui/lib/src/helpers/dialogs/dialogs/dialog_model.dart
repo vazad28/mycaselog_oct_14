@@ -5,10 +5,6 @@ import 'package:l10n/l10n.dart';
 enum DialogType { info, confirm, warning, error }
 
 class DialogModel {
-  final Widget? content;
-  final String? title;
-  final String? cancelActionText;
-  final String? defaultActionText;
 
   DialogModel({
     this.content,
@@ -31,6 +27,10 @@ class DialogModel {
         defaultActionText: S.current.yes, // Replace with your localization
         cancelActionText: S.current.cancel, // Replace with your localization
       );
+  final Widget? content;
+  final String? title;
+  final String? cancelActionText;
+  final String? defaultActionText;
 
   DialogModel copyWith({
     Widget? content,
@@ -47,15 +47,6 @@ class DialogModel {
 }
 
 class InputDialogModel {
-  final String? title;
-  final String? cancelActionText;
-  final String? defaultActionText;
-  final bool obscureText;
-  final String? value;
-  final String? placeholderText;
-  final TextCapitalization? textCapitalization;
-  final List<TextInputFormatter>? inputFormatters;
-  final bool multiline;
 
   InputDialogModel({
     this.title,
@@ -68,6 +59,15 @@ class InputDialogModel {
     this.inputFormatters,
     this.multiline = false,
   });
+  final String? title;
+  final String? cancelActionText;
+  final String? defaultActionText;
+  final bool obscureText;
+  final String? value;
+  final String? placeholderText;
+  final TextCapitalization? textCapitalization;
+  final List<TextInputFormatter>? inputFormatters;
+  final bool multiline;
 
   InputDialogModel copyWith({
     String? title,

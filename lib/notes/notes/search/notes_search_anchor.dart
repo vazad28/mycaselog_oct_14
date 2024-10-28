@@ -7,7 +7,7 @@ import 'package:models/models.dart';
 import 'package:realm/realm.dart';
 import 'package:ui/ui.dart';
 
-import '../../../shared/shared.dart';
+import '../../../app/app.dart';
 import '../../notes.dart';
 
 enum NotesSearchBarStyle { icon, bar }

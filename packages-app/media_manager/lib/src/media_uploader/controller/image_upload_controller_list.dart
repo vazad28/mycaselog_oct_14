@@ -47,7 +47,9 @@ class ImageUploadControllersList {
     MediaUploadService mediaUploadService,
   ) {
     if (mediaModel.status == MediaStatus.success ||
-        mediaModel.status == MediaStatus.cancelled) return null;
+        mediaModel.status == MediaStatus.cancelled) {
+      return null;
+    }
 
     final entry = _uploadList.entries
         .firstWhereOrNull((element) => element.key == mediaModel.mediaID);

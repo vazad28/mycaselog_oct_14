@@ -30,7 +30,7 @@ class AddFieldForm extends ConsumerWidget {
             textInputAction: TextInputAction.next,
             decoration: InputDecoration(
                 labelText: TemplateFieldModelProps.title.name.titleCase,
-                hintText: 'Title of the field'),
+                hintText: 'Title of the field',),
           ).formFieldPadding(),
 
           /// suffix field

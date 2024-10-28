@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:media_manager/media_manager.dart';
 import 'package:ui/ui.dart';
 
-import '../../shared/providers/providers.dart';
+import '../../app/providers/providers.dart';
 
 class UserAvatarMiniWidget extends ConsumerWidget {
   const UserAvatarMiniWidget({super.key});

@@ -2,11 +2,9 @@ import 'dart:io';
 
 import 'package:file_picker/file_picker.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:ui/ui.dart';
 import 'package:utils/utils.dart';
 
-import '../../core/core.dart';
-import '../../shared/shared.dart';
+import '../../app/app.dart';
 
 part '../../generated/database_io/import/database_import_provider.g.dart';
 

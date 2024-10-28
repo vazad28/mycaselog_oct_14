@@ -4,7 +4,7 @@ import 'package:models/models.dart';
 import 'package:realm/realm.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../../../shared/shared.dart';
+import '../../../app/app.dart';
 
 part '../../../generated/notes/notes/provider/notes_provider.g.dart';
 

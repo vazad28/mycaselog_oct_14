@@ -5,7 +5,6 @@ import 'package:models/models.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 import 'package:ui/ui.dart';
 
-import '../../../shared/shared.dart';
 import '../add_field.dart';
 
 const _defaultValueHintText = 'default field value';
@@ -36,7 +35,7 @@ class _DefaultValueBoolField extends ConsumerWidget {
       formControlName: TemplateFieldModelProps.defaultValue.name,
       decoration: InputDecoration(
           labelText: TemplateFieldModelProps.defaultValue.name.titleCase,
-          hintText: _defaultValueHintText),
+          hintText: _defaultValueHintText,),
       items: ['true', 'false']
           .map(
             (grade) => DropdownMenuItem<String>(
@@ -133,7 +132,7 @@ class _DefaultValueFieldText extends ConsumerWidget {
       textInputAction: TextInputAction.next,
       decoration: InputDecoration(
           labelText: TemplateFieldModelProps.defaultValue.name,
-          hintText: _defaultValueHintText),
+          hintText: _defaultValueHintText,),
     );
   }
 }
@@ -149,7 +148,7 @@ class _DefaultValueFieldNumber extends ConsumerWidget {
       keyboardType: TextInputType.number,
       decoration: InputDecoration(
           labelText: TemplateFieldModelProps.defaultValue.name,
-          hintText: _defaultValueHintText),
+          hintText: _defaultValueHintText,),
     );
   }
 }

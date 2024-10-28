@@ -8,7 +8,6 @@ import 'package:reactive_forms/reactive_forms.dart';
 import 'package:ui/ui.dart';
 
 import '../../../router/router.dart';
-import '../../../shared/widgets/form_pop_scope_wrapper.dart';
 import '../add_template.dart';
 import 'add_template_fields_list.dart';
 

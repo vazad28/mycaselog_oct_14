@@ -5,8 +5,8 @@ import 'package:flutter_logger_plus/flutter_logger_plus.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:utils/utils.dart';
 
+import '../../app/app.dart';
 import '../../core/core.dart';
-import '../../shared/shared.dart';
 
 part '../../generated/csv_export/provider/csv_export_provider.g.dart';
 

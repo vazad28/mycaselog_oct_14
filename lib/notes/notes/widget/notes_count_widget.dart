@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:ui/ui.dart';
 
-import '../../../shared/widgets/widgets.dart';
 import '../../notes.dart';
 
 class NotesCountWidget extends ConsumerWidget {

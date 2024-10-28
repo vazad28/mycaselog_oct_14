@@ -17,38 +17,41 @@ class AddNoteForm extends ConsumerWidget with AddNoteFormMixin {
     return ReactiveForm(
       key: ValueKey('__${noteModel ?? "add_note_form_key"}__'),
       formGroup: formGroup,
-      child: Column(children: [
-        const NoteAppBar(
-          key: Key('__note_app_bar_key__'),
-        ),
-        const VerticalSpacer.normal(),
+      child: Column(
+        children: [
+          const NoteAppBar(
+            key: Key('__note_app_bar_key__'),
+          ),
+          const VerticalSpacer.normal(),
 
-        /// template title
-        ReactiveTextField<String>(
-          formControlName: NoteModelProps.title.name,
-          decoration: const InputDecoration(
+          /// template title
+          ReactiveTextField<String>(
+            formControlName: NoteModelProps.title.name,
+            decoration: const InputDecoration(
               border: InputBorder.none,
               enabledBorder: InputBorder.none,
               label: Text('Title'),
               hintText: 'Title of your note',
               floatingLabelBehavior: FloatingLabelBehavior.auto,
-              contentPadding: EdgeInsets.all(4)),
-          onTapOutside: (_) => primaryFocus?.unfocus(),
-        ).formFieldPadding(),
+              contentPadding: EdgeInsets.all(4),
+            ),
+            onTapOutside: (_) => primaryFocus?.unfocus(),
+          ).formFieldPadding(),
 
-        Builder(
-          builder: (context) {
-            return Expanded(
-              child: ReactiveFormField<String?, String?>(
-                formControlName: NoteModelProps.note.name,
-                builder: (ReactiveFormFieldState<String?, String?> field) {
-                  return noteEditor;
-                },
-              ),
-            );
-          },
-        ),
-      ]),
+          Builder(
+            builder: (context) {
+              return Expanded(
+                child: ReactiveFormField<String?, String?>(
+                  formControlName: NoteModelProps.note.name,
+                  builder: (ReactiveFormFieldState<String?, String?> field) {
+                    return noteEditor;
+                  },
+                ),
+              );
+            },
+          ),
+        ],
+      ),
     );
   }
 }

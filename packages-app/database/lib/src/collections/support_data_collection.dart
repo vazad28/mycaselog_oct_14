@@ -39,4 +39,6 @@ class SupportDataCollection extends RealmCollection<SupportDataModel>
       }
     });
   }
+
+  SupportDataModel? getSupportData() => getSingle(userID);
 }

@@ -7,7 +7,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_logger_plus/flutter_logger_plus.dart';
 import 'package:utils/utils.dart';
 
-import '../app_vars.dart';
+import '../../app/app_vars.dart';
 
 final errorTracker = _ErrorTracker();
 
@@ -92,7 +92,7 @@ class _ErrorTracker {
   //       .log(message + (data != null ? ': $data' : ''));
   // }
 
-  Future<void> log(Object error, [StackTrace? stacktrace]) async {
+  void log(Object error, [StackTrace? stacktrace]) {
     logger.error(error.toString());
     if (stacktrace != null) {
       developer.log('DevLog:', error: error, stackTrace: stacktrace);

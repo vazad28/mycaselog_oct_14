@@ -1,6 +1,4 @@
-import 'package:riverpod_annotation/riverpod_annotation.dart';
-
-part '../../generated/router/providers/bottom_bar_visibility_provider.g.dart';
+part of 'providers.dart';
 
 /// A state provider holding the state for the visibility of the
 /// bottom navigation bar

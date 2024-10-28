@@ -7,7 +7,6 @@ import 'package:models/models.dart';
 import 'package:ui/ui.dart';
 
 import '../../../router/router.dart';
-import '../../../shared/shared.dart';
 import '../../support_data.dart';
 
 class SurgeryLocationsPage extends ConsumerWidget {

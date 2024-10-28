@@ -23,8 +23,9 @@ class AddTemplateForm extends ConsumerWidget with AddTemplateFormMixin {
           ReactiveTextField<String>(
             formControlName: TemplateModelProps.title.name,
             decoration: InputDecoration(
-                labelText: TemplateModelProps.title.name.titleCase,
-                hintText: 'Title of template'),
+              labelText: TemplateModelProps.title.name.titleCase,
+              hintText: 'Title of template',
+            ),
             onTapOutside: (_) => primaryFocus?.unfocus(),
           ).formFieldPadding(),
 
@@ -32,8 +33,9 @@ class AddTemplateForm extends ConsumerWidget with AddTemplateFormMixin {
           ReactiveTextField<String>(
             formControlName: TemplateModelProps.desc.name,
             decoration: InputDecoration(
-                labelText: TemplateModelProps.desc.name.titleCase,
-                hintText: 'Details of template'),
+              labelText: TemplateModelProps.desc.name.titleCase,
+              hintText: 'Details of template',
+            ),
             onTapOutside: (_) => primaryFocus?.unfocus(),
           ).formFieldPadding(),
 

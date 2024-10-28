@@ -3,11 +3,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:models/models.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:ui/ui.dart';
 import 'package:utils/utils.dart';
 
+import '../../../app/providers/providers.dart';
 import '../../../router/router.dart';
-import '../../../shared/providers/providers.dart';
-import '../../../shared/widgets/form_provider.dart';
 
 part '../../../generated/templates/add_template/provider/add_template_provider.g.dart';
 part 'add_template_fields_provider.dart';
@@ -43,7 +43,7 @@ class AddTemplateSeeder extends _$AddTemplateSeeder {
 /// ////////////////////////////////////////////////////////////////////
 @riverpod
 FormGroup addTemplateFormGroup(
-  AddTemplateFormGroupRef ref,
+  Ref ref,
 ) {
   final templateModel = ref.watch(addTemplateSeederProvider);
 

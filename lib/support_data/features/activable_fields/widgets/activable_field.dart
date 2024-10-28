@@ -1,8 +1,8 @@
 import 'package:annotations/annotations.dart';
-import 'package:ui/ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:recase/recase.dart';
+import 'package:ui/ui.dart';
 
 import '../../../support_data.dart';
 

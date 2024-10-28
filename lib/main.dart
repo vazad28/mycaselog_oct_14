@@ -9,8 +9,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ui/ui.dart';
 import 'package:utils/utils.dart';
 
-import 'app/app.dart';
-//import 'core/config/firebase_options.dart';
+import 'bootstrap/index.dart';
 import 'core/error_tracker/error_tracker.dart';
 import 'firebase_options.dart';
 
@@ -47,7 +46,7 @@ Future<void> _init() async {
       final appWidget = PopScope(
         onPopInvokedWithResult: (bool didPop, result) => {},
         child: TapOutsideUnfocus(
-          child: AppStartupWidget(
+          child: StartupWidget(
             onAuthentication: (context) => const MycaselogApp(),
             needsAuthentication: (context) => const MycaselogAuthApp(),
           ),

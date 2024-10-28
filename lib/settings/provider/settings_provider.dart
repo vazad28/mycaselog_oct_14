@@ -1,8 +1,8 @@
 import 'package:models/models.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../../shared/providers/providers.dart';
-import '../../shared/services/services.dart';
+import '../../app/providers/providers.dart';
+import '../../app/services/services.dart';
 
 part '../../generated/settings/provider/settings_provider.g.dart';
 

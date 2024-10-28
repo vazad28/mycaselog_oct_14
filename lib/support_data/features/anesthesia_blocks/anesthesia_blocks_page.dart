@@ -5,7 +5,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:l10n/l10n.dart';
 import 'package:ui/ui.dart';
 
-import '../../../shared/shared.dart';
 import '../../support_data.dart';
 
 class AnesthesiaBlocksPage extends ConsumerWidget with SupportDataMixin {
@@ -74,7 +73,7 @@ class AnesthesiaBlocksView extends ConsumerWidget with SupportDataMixin {
           onTap: () {
             context
                 .showInputDialog<String?>(
-                    title: 'Anesthesia Block', value: block)
+                    title: 'Anesthesia Block', value: block,)
                 .then((newBlock) {
               if (newBlock == null || newBlock.isEmpty) return;
               ref

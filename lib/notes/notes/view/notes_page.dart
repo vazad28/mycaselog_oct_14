@@ -6,7 +6,6 @@ import 'package:realm/realm.dart';
 import 'package:ui/ui.dart';
 
 import '../../../router/router.dart';
-import '../../../shared/widgets/widgets.dart';
 import '../../notes.dart';
 
 class NotesPage extends ConsumerStatefulWidget {

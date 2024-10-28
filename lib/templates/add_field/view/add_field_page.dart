@@ -5,7 +5,6 @@ import 'package:l10n/l10n.dart';
 import 'package:models/models.dart';
 import 'package:ui/ui.dart';
 
-import '../../../shared/widgets/form_pop_scope_wrapper.dart';
 import '../add_field.dart';
 import 'add_field_form.dart';
 

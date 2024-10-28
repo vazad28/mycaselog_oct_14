@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:l10n/l10n.dart';
 import 'package:ui/ui.dart';
 
-import '../../../shared/shared.dart';
+import '../../../app/app.dart';
 
 part './tiles/theme_mode_tile.dart';
 

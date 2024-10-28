@@ -2,7 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:models/models.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../../../shared/providers/providers.dart';
+import '../../../app/providers/providers.dart';
 
 part '../../../generated/templates/templates/provider/templates_provider.g.dart';
 

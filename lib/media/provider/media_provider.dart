@@ -1,25 +1,57 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:models/models.dart';
+import 'package:realm/realm.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:utils/utils.dart';
 
-part '../../generated/media/provider/media_provider.freezed.dart';
+import '../../app/app.dart';
+
 part '../../generated/media/provider/media_provider.g.dart';
-part 'media_event.dart';
 
-/// ////////////////////////////////////////////////////////////////////
-/// Main Provider
-/// ////////////////////////////////////////////////////////////////////
+enum MediaGridStyleEnum { list, grid }
 
 @riverpod
-class MediaNotifier extends _$MediaNotifier {
+class MediaGridTileStyle extends _$MediaGridTileStyle {
   @override
-  StateOf<MediaModel> build() {
-    return const StateOf<MediaModel>.init();
+  int build() {
+    final localStorage = ref.watch(localStorageProvider);
+    return localStorage.getMediaGridTileStyle();
   }
 
-  /// Map events to state
-  void on(MediaEvent event) {
-    event.map(add: (value) => {});
+  // ignore: use_setters_to_change_properties
+  void update(int toggledStyle) {
+    state = toggledStyle;
+    ref.read(localStorageProvider).setMediaGridTileStyle(toggledStyle);
+  }
+}
+
+@Riverpod(keepAlive: true)
+class MediaNotifier extends _$MediaNotifier {
+  @override
+  Stream<RealmResultsChanges<MediaModel>> build() {
+    return ref.watch(collectionsProvider).mediaCollection.getAll().changes;
+  }
+
+  /// Full text search notes
+  RealmResults<MediaModel> searchMedia(String searchTerm) {
+    final caseResults =
+        ref.watch(collectionsProvider).casesCollection.search(searchTerm);
+
+    // list of case IDs matching the search term
+    final ids = caseResults.map((e) => e.caseID);
+
+    return ref.watch(collectionsProvider).mediaCollection.search(ids);
+  }
+
+  Future<void> pullToRefresh() {
+    try {
+      return Future<void>.delayed(const Duration(milliseconds: 1600)).then((_) {
+        return ref
+            .watch(collectionsProvider)
+            .mediaCollection
+            .refreshBacklinks();
+      });
+    } catch (err) {
+      ref.watch(dialogServiceProvider).showSnackBar('Refresh failed');
+      return Future<void>.sync(() => {});
+    }
   }
 }

@@ -18,13 +18,14 @@ abstract class RealmCollection<T extends RealmObject>
 
   // Retrieves all items from Realm, optionally sorted by a specific field
   RealmResults<T> getAll({
+    int? removed = 0,
     String? orderByField, // Field to sort by
     OrderByType orderByType = OrderByType.descending, // Sort order
   }) {
     if (orderByField != null) {
-      // Query Realm with sorting
-      return realm
-          .query<T>('TRUEPREDICATE SORT($orderByField ${orderByType.type})');
+      return realm.query<T>(
+        'removed == $removed AND TRUEPREDICATE SORT($orderByField ${orderByType.type})',
+      );
     }
     // Return all items without sorting
     return realm.all<T>();

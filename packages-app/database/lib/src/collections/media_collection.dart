@@ -31,4 +31,12 @@ class MediaCollection extends RealmCollection<MediaModel>
     // TODO: implement modelToMap
     throw UnimplementedError();
   }
+
+  /// Searches for media items based on a list of IDs in Realm.
+  RealmResults<MediaModel> search(Iterable<String> ids) {
+    return realm.query<MediaModel>(r'caseID IN $0 AND removed == $1', [ids, 0]);
+  }
+
+  /// Refreshes media backlinks
+  void refreshBacklinks() => refreshMediaBacklinks(realm, null);
 }

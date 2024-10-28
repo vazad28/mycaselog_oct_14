@@ -6,7 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:models/models.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../../shared/shared.dart';
+import '../../app/app.dart';
 
 part './support_data_mixin.dart';
 part '../../generated/support_data/provider/support_data_provider.g.dart';
@@ -50,20 +50,20 @@ class SupportDataNotifier extends _$SupportDataNotifier {
   void upsertAssistant(AssistantModel model, CrudAction action) {
     if (action == CrudAction.delete) {
       _updateSupportData(
-          state..assistants.removeComplex(model, (e) => e.assistantID));
+          state..assistants.removeComplex(model, (e) => e.assistantID),);
     } else {
       _updateSupportData(
-          state..assistants.replaceOrAddComplex(model, (e) => e.assistantID));
+          state..assistants.replaceOrAddComplex(model, (e) => e.assistantID),);
     }
   }
 
   void upsertSurgeryLocation(SurgeryLocationModel model, CrudAction action) {
     if (action == CrudAction.delete) {
       _updateSupportData(
-          state..surgeryLocations.removeComplex(model, (e) => e.locationID));
+          state..surgeryLocations.removeComplex(model, (e) => e.locationID),);
     } else {
       _updateSupportData(state
-        ..surgeryLocations.replaceOrAddComplex(model, (e) => e.locationID));
+        ..surgeryLocations.replaceOrAddComplex(model, (e) => e.locationID),);
     }
   }
 

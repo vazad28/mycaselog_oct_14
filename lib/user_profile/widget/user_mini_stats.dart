@@ -44,7 +44,7 @@ class UserMiniStatsWidget extends ConsumerWidget {
           children: [
             _label('Cases', labelStyle),
             _label('Media', labelStyle),
-            _label('Notes', labelStyle)
+            _label('Notes', labelStyle),
           ],
         ),
         Row(
@@ -52,9 +52,9 @@ class UserMiniStatsWidget extends ConsumerWidget {
           children: [
             _data(stats.cases.toString(), dataStyle),
             _data(stats.media.toString(), dataStyle),
-            _data(stats.notes.toString(), dataStyle)
+            _data(stats.notes.toString(), dataStyle),
           ],
-        )
+        ),
       ],
     );
   }

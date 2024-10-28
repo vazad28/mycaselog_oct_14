@@ -6,12 +6,23 @@ import 'package:image_picker/image_picker.dart' show ImagePicker, ImageSource;
 import 'package:models/models.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../../shared/shared.dart';
+import '../../app/app.dart';
 
 part '../../generated/user_profile/provider/user_profile_provider.freezed.dart';
 part '../../generated/user_profile/provider/user_profile_provider.g.dart';
 
 part 'user_profile_mixin.dart';
+
+/// ////////////////////////////////////////////////////////////////////
+/// Signout loading spinner provider
+/// ////////////////////////////////////////////////////////////////////
+@riverpod
+class SignOutButtonNotifier extends _$SignOutButtonNotifier {
+  @override
+  bool build() => false;
+  // ignore: avoid_positional_boolean_parameters
+  bool update({required bool value}) => state = value;
+}
 
 /// ////////////////////////////////////////////////////////////////////
 /// Main Providers

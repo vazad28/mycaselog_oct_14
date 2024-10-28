@@ -3,7 +3,7 @@ import 'package:database/database.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:utils/utils.dart';
 
-import '../../shared/shared.dart';
+import '../../app/app.dart';
 
 part '../../generated/sync/provider/sync_provider.g.dart';
 

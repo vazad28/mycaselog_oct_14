@@ -7,7 +7,7 @@ part of '../../../../templates/add_template/provider/add_template_provider.dart'
 // **************************************************************************
 
 String _$addTemplateFormGroupHash() =>
-    r'9ce617db6d48d9c68b5a2b7ffaa7799cf3a9b05d';
+    r'3ef64aaf2d853c97cc453f6e13d755e2f6879b5b';
 
 /// ////////////////////////////////////////////////////////////////////
 /// Form  Group Provider
@@ -25,6 +25,8 @@ final addTemplateFormGroupProvider = AutoDisposeProvider<FormGroup>.internal(
   allTransitiveDependencies: null,
 );
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 typedef AddTemplateFormGroupRef = AutoDisposeProviderRef<FormGroup>;
 String _$addTemplateSeederHash() => r'bcfefd163a41bd56770d644f1c71ab4bb71c4743';
 
@@ -90,4 +92,4 @@ final addTemplateFieldsNotifierProvider = AutoDisposeNotifierProvider<
 typedef _$AddTemplateFieldsNotifier
     = AutoDisposeNotifier<List<TemplateFieldModel>>;
 // ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, inference_failure_on_uninitialized_variable, inference_failure_on_function_return_type, inference_failure_on_untyped_parameter, deprecated_member_use_from_same_package
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

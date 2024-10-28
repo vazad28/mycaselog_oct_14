@@ -5,8 +5,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:models/models.dart';
 import 'package:ui/ui.dart';
 
-import '../../../core/app_vars.dart';
-import '../../../shared/shared.dart';
 import '../add_field.dart';
 
 class FieldTypeSelectorWidget extends ConsumerWidget with AddFieldFormMixin {

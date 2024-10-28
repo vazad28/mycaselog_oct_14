@@ -2,6 +2,41 @@
 targets:
   $default:
     builders:
+      # Json Serializable 
+      json_serializable:
+        options:
+          explicit_to_json: true
+          
+      # Go router
+      go_router_builder:
+        generate_for:
+          - lib/**_routes.dart
+
+      # Realm
+      realm:realm_generator:
+        enabled: false
+        # generate_for: 
+        #   exclude:
+        #     - packages-app//**.dart
+      #     include:
+      #       #- packages/**.dart
+      #       - packages-app/models/**.dart
+      #       - packages-app/database/**.dart
+
+      # Riverpod
+      riverpod_generator:
+        enabled: true
+        generate_for:
+          include:
+            - lib/**provider.dart
+            - lib/**providers.dart
+            - lib/**services.dart
+            - lib/**/provider/**.dart
+            #
+          exclude:
+            - packages/**.dart
+            - packages-app/**.dart
+
       # Freezed package
       freezed|freezed:
         enabled: true
@@ -16,33 +51,7 @@ targets:
         options:
           build_extensions:
             '^lib/{{}}.dart': 'lib/generated/{{}}.freezed.dart'
-      # Json Serializable 
-      json_serializable:
-        options:
-          explicit_to_json: true
-      # Go router
-      go_router_builder:
-        generate_for:
-          - lib/**_routes.dart
-      # Realm
-      realm:realm_generator:
-        enabled: true
-        generate_for: 
-          exclude:
-            - lib/**.dart
-          include:
-            #- packages/**.dart
-            - packages-app/models/**.dart
-            - packages-app/database/**.dart
-      # Riverpod
-      riverpod:
-        generate_for:
-          include:
-            - lib/**_provider.dart
-          exclude:
-            - lib/**_routes.dart
-            - packages/**.dart
-            - packages-app/**.dart
+
       source_gen|combining_builder:
         options:
           build_extensions:

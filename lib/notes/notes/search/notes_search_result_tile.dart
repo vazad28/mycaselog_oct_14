@@ -69,7 +69,7 @@ class _NoteSearchTile extends StatelessWidget {
           Text(
             noteModel.timestamp.formatMDY(),
             style: context.textTheme.bodySmall,
-          )
+          ),
         ],
       ),
     );

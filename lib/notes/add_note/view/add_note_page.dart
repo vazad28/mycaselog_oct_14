@@ -8,7 +8,6 @@ import 'package:reactive_forms/reactive_forms.dart';
 import 'package:ui/ui.dart';
 import 'package:utils/utils.dart';
 
-import '../../../shared/shared.dart';
 import '../provider/add_note_provider.dart';
 import '../quill/fonts_loader.dart';
 import '../quill/note_quill_editor.dart';
@@ -91,15 +90,16 @@ class _AddNotePageState extends ConsumerState<AddNotePage>
     });
 
     final scaffold = Scaffold(
-        appBar: AppBar(toolbarHeight: 0),
-        bottomSheet: AnimatedContainer(
-          height: _editorHasFocus ? kMinInteractiveDimension : 0,
-          duration: Durations.medium4,
-          child: QuillToolbarBottom(
-            controller: ref.watch(noteControllerProvider),
-          ),
+      appBar: AppBar(toolbarHeight: 0),
+      bottomSheet: AnimatedContainer(
+        height: _editorHasFocus ? kMinInteractiveDimension : 0,
+        duration: Durations.medium4,
+        child: QuillToolbarBottom(
+          controller: ref.watch(noteControllerProvider),
         ),
-        body: AddNoteView(noteEditor: _noteEditor));
+      ),
+      body: AddNoteView(noteEditor: _noteEditor),
+    );
 
     return FormPopScopeWrapper(
       key: const Key('__add_note_page_form_pop_scope_wrapper_key__'),

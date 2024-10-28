@@ -64,23 +64,9 @@ abstract class _$SyncNotifier extends BuildlessNotifier<StateOf<List<String>>> {
 const syncNotifierProvider = SyncNotifierFamily();
 
 /// See also [SyncNotifier].
-class SyncNotifierFamily extends Family {
+class SyncNotifierFamily extends Family<StateOf<List<String>>> {
   /// See also [SyncNotifier].
   const SyncNotifierFamily();
-
-  static const Iterable<ProviderOrFamily>? _dependencies = null;
-
-  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
-
-  @override
-  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
-
-  @override
-  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
-      _allTransitiveDependencies;
-
-  @override
-  String? get name => r'syncNotifierProvider';
 
   /// See also [SyncNotifier].
   SyncNotifierProvider call(
@@ -91,7 +77,6 @@ class SyncNotifierFamily extends Family {
     );
   }
 
-  @visibleForOverriding
   @override
   SyncNotifierProvider getProviderOverride(
     covariant SyncNotifierProvider provider,
@@ -101,26 +86,19 @@ class SyncNotifierFamily extends Family {
     );
   }
 
-  /// Enables overriding the behavior of this provider, no matter the parameters.
-  Override overrideWith(SyncNotifier Function() create) {
-    return _$SyncNotifierFamilyOverride(this, create);
-  }
-}
-
-class _$SyncNotifierFamilyOverride implements FamilyOverride {
-  _$SyncNotifierFamilyOverride(this.overriddenFamily, this.create);
-
-  final SyncNotifier Function() create;
+  static const Iterable<ProviderOrFamily>? _dependencies = null;
 
   @override
-  final SyncNotifierFamily overriddenFamily;
+  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
+
+  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
 
   @override
-  SyncNotifierProvider getProviderOverride(
-    covariant SyncNotifierProvider provider,
-  ) {
-    return provider._copyWith(create);
-  }
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
+      _allTransitiveDependencies;
+
+  @override
+  String? get name => r'syncNotifierProvider';
 }
 
 /// See also [SyncNotifier].
@@ -144,7 +122,7 @@ class SyncNotifierProvider
         );
 
   SyncNotifierProvider._internal(
-    super.create, {
+    super._createNotifier, {
     required super.name,
     required super.dependencies,
     required super.allTransitiveDependencies,
@@ -181,27 +159,8 @@ class SyncNotifierProvider
   }
 
   @override
-  (DbCollection,) get argument {
-    return (dbCollection,);
-  }
-
-  @override
   NotifierProviderElement<SyncNotifier, StateOf<List<String>>> createElement() {
     return _SyncNotifierProviderElement(this);
-  }
-
-  SyncNotifierProvider _copyWith(
-    SyncNotifier Function() create,
-  ) {
-    return SyncNotifierProvider._internal(
-      () => create()..dbCollection = dbCollection,
-      name: name,
-      dependencies: dependencies,
-      allTransitiveDependencies: allTransitiveDependencies,
-      debugGetCreateSourceHash: debugGetCreateSourceHash,
-      from: from,
-      dbCollection: dbCollection,
-    );
   }
 
   @override
@@ -218,6 +177,8 @@ class SyncNotifierProvider
   }
 }
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 mixin SyncNotifierRef on NotifierProviderRef<StateOf<List<String>>> {
   /// The parameter `dbCollection` of this provider.
   DbCollection get dbCollection;
@@ -233,4 +194,4 @@ class _SyncNotifierProviderElement
       (origin as SyncNotifierProvider).dbCollection;
 }
 // ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, inference_failure_on_uninitialized_variable, inference_failure_on_function_return_type, inference_failure_on_untyped_parameter, deprecated_member_use_from_same_package
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

@@ -5,7 +5,6 @@ import 'package:l10n/l10n.dart';
 import 'package:ui/ui.dart';
 
 import '../../../router/router.dart';
-import '../../../shared/widgets/widgets.dart';
 import '../templates.dart';
 
 class TemplatesPage extends ConsumerStatefulWidget {

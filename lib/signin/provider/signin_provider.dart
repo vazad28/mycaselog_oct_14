@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../../shared/providers/providers.dart';
+import '../../app/providers/providers.dart';
 part './signin_state.dart';
 part './signin_mixin.dart';
 

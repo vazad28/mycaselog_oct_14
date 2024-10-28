@@ -6,8 +6,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:utils/utils.dart';
 
-import '../../core/core.dart';
-import '../../shared/shared.dart';
+import '../../app/app.dart';
 
 part '../../generated/database_io/export/database_export_provider.g.dart';
 

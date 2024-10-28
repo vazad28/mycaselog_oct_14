@@ -1,16 +1,7 @@
-import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
-
-import '../routes/routes.dart';
-import '../views/app_bottom_nav_bar.dart';
-import '../views/app_router_scaffold.dart';
-import 'router_observers.dart';
-
-part '../../generated/router/providers/routes_provider.g.dart';
+part of 'providers.dart';
 
 @Riverpod(keepAlive: true)
-List<NavigationDestination> rootNavDestinations(RootNavDestinationsRef ref) {
+List<NavigationDestination> rootNavDestinations(Ref ref) {
   return [
     /// cases
     NavigationDestination(
@@ -51,7 +42,7 @@ List<NavigationDestination> rootNavDestinations(RootNavDestinationsRef ref) {
 
 /// Routes Provider
 @Riverpod(keepAlive: true)
-List<RouteBase> routes(RoutesRef ref) {
+List<RouteBase> routes(Ref ref) {
   debugPrint('routes provider called');
   final routesList = [
     //$authFlowRoute,

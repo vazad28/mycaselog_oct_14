@@ -3,10 +3,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:models/models.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:ui/ui.dart';
 import 'package:utils/utils.dart';
 
 import '../../../router/router.dart';
-import '../../../shared/widgets/form_provider.dart';
 
 part '../../../generated/templates/add_field/provider/add_field_provider.g.dart';
 part 'add_field_form_mixin.dart';
@@ -33,7 +33,7 @@ class AddFieldSeeder extends _$AddFieldSeeder {
 /// Form  Group Provider
 /// ////////////////////////////////////////////////////////////////////
 @riverpod
-FormGroup addFieldFormGroup(AddFieldFormGroupRef ref) {
+FormGroup addFieldFormGroup(Ref ref) {
   final templateFieldModel = ref.watch(addFieldSeederProvider);
 
   return FormGroup({

@@ -4,12 +4,11 @@ import 'package:authentication_client/authentication_client.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
+import '../../app/providers/providers.dart';
 import '../../router/router.dart';
-import '../../shared/providers/providers.dart';
 
 part '../../generated/auth_flow/provider/auth_flow_provider.freezed.dart';
 part '../../generated/auth_flow/provider/auth_flow_provider.g.dart';
-
 part 'auth_flow_state.dart';
 
 /// ////////////////////////////////////////////////////////////////////

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ui/ui.dart';
 
-import '../../shared/shared.dart';
+import '../../app/app.dart';
 import '../csv_export.dart';
 
 class CsvExportPage extends ConsumerWidget {

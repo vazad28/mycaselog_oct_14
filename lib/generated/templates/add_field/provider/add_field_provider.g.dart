@@ -6,7 +6,7 @@ part of '../../../../templates/add_field/provider/add_field_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$addFieldFormGroupHash() => r'493972355c8f0f9eca4232c26eae7c0c9d751009';
+String _$addFieldFormGroupHash() => r'0d5c078ace0e3cc8a3819df9117a749e3a4da954';
 
 /// ////////////////////////////////////////////////////////////////////
 /// Form  Group Provider
@@ -24,6 +24,8 @@ final addFieldFormGroupProvider = AutoDisposeProvider<FormGroup>.internal(
   allTransitiveDependencies: null,
 );
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 typedef AddFieldFormGroupRef = AutoDisposeProviderRef<FormGroup>;
 String _$addFieldSeederHash() => r'5fc981839f4348f3cc9b8e9fc31790960d20b1aa';
 
@@ -103,4 +105,4 @@ final templateFieldOptionsProvider = AutoDisposeNotifierProvider<
 
 typedef _$TemplateFieldOptions = AutoDisposeNotifier<Iterable<String>?>;
 // ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, inference_failure_on_uninitialized_variable, inference_failure_on_function_return_type, inference_failure_on_untyped_parameter, deprecated_member_use_from_same_package
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

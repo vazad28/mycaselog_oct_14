@@ -1,15 +1,52 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:models/models.dart';
+import 'package:realm/realm.dart';
+import 'package:ui/ui.dart';
 
 import '../cases.dart';
 
 class CasesView extends ConsumerWidget {
-  const CasesView({super.key});
+  const CasesView({
+    required this.caseModels,
+    super.key,
+  });
+
+  final RealmResults<CaseModel> caseModels;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final casesAsync = ref.watch(casesNotifierProvider);
+    final caseTileStyle = ref.watch(caseTileStyleProvider);
 
-    return const Center(child: Text('CasesView'));
+    return SliverLayoutBuilder(
+      builder: (BuildContext context, SliverConstraints constraints) {
+        final widgetKey = constraints.crossAxisExtent <= Breakpoints.mobile
+            ? const Key('__CasesView_list_key__')
+            : const Key('__CasesView_grid_key__');
+
+        final crossAxisCount =
+            constraints.crossAxisExtent <= Breakpoints.mobile ? 1 : 2;
+
+        return SliverAlignedGrid.count(
+          key: widgetKey,
+          crossAxisCount: crossAxisCount,
+          mainAxisSpacing: AppSpacing.xs,
+          crossAxisSpacing: AppSpacing.xs,
+          itemCount: caseModels.length,
+          itemBuilder: (BuildContext context, int index) {
+            final caseModel = caseModels[index];
+            return CasesListItem(
+              key: Key(
+                '__cases_list_item_${caseModel.caseID}_key__',
+              ),
+              caseModel: caseModel,
+              caseTileStyle: caseTileStyle,
+            );
+          },
+        );
+      },
+    );
   }
 }

@@ -104,7 +104,10 @@ class AsaField extends StatelessWidget {
     final name = BasicDataModelProps.asa.name;
     return ReactiveDropdownField<int>(
       formControlName: name,
-      decoration: context.inputDecorOutline(labelText: name.titleCase),
+      decoration: context.inputDecorOutline(
+        labelText: name.titleCase,
+        contentPadding: AppConst.dropdownFieldPadding,
+      ),
       items: [1, 2, 3, 4]
           .map(
             (grade) =>
@@ -124,7 +127,10 @@ class SurgerySideField extends StatelessWidget {
     final name = BasicDataModelProps.side.name;
     return ReactiveDropdownField<String>(
       formControlName: name,
-      decoration: context.inputDecorOutline(labelText: name.titleCase),
+      decoration: context.inputDecorOutline(
+        labelText: name.titleCase,
+        contentPadding: AppConst.dropdownFieldPadding,
+      ),
       items: S.current.surgerySideList
           .split(',')
           .map(

@@ -1,3 +1,4 @@
+import 'package:annotations/annotations.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -7,6 +8,8 @@ import 'package:realm/realm.dart';
 import 'package:ui/ui.dart';
 
 import '../../app/app.dart';
+import '../../router/router.dart';
+import '../../search/search.dart';
 import '../cases.dart';
 import '../search/cases_search_bar.dart';
 
@@ -43,7 +46,7 @@ class _CasesPageState extends ConsumerState<CasesPage> with AppMixins {
         ),
         slivers: [
           const CasesAppBar(),
-          const CasesSearchBar(),
+          const CaseMediaSearchBar(searchType: SearchType.cases),
           CupertinoSliverRefreshControl(
             builder: customScrollViewRefreshIndicator,
             refreshTriggerPullDistance: AppConst.kRefreshTriggerPullDistance,
@@ -65,7 +68,7 @@ class _CasesPageState extends ConsumerState<CasesPage> with AppMixins {
         key: const Key('__cases_screen_fab_key__'),
         title: S.of(context).addCase,
         onTap: () {
-          //AddCaseRoute().push<void>(context);
+          AddCaseRoute().push<void>(context);
         },
       ),
     );

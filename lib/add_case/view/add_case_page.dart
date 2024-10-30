@@ -133,13 +133,7 @@ class _AddCasePageState extends ConsumerState<AddCasePage>
         switchNavBarVisibility(ref, visibility: visibility);
       },
       routeObserver: pageRouteObserver(ref),
-      child: Scaffold(
-        appBar: AppBar(
-          title: const Text('title'),
-          actions: const [_SubmitButton()],
-        ),
-        body: scaffold,
-      ),
+      child: scaffold,
     );
   }
 }

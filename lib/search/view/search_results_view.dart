@@ -1,9 +1,11 @@
-part of 'search_page.dart';
+part of 'search_view.dart';
 
 class ResultsView<T> extends StatelessWidget {
-  const ResultsView(this.searchResultWidgets, {super.key});
+  const ResultsView(this.searchResultWidgets,
+      {super.key, required this.searchType});
 
   final Iterable<Widget> searchResultWidgets;
+  final SearchType searchType;
 
   @override
   Widget build(BuildContext context) {
@@ -37,10 +39,18 @@ class ResultsView<T> extends StatelessWidget {
   }
 
   Widget _buildResultsList() {
-    return ListView.builder(
-      padding: EdgeInsets.zero,
-      itemBuilder: (context, index) => searchResultWidgets.elementAt(index),
-      itemCount: searchResultWidgets.length,
-    );
+    return searchType == SearchType.media
+        ? ListView.builder(
+            padding: EdgeInsets.zero,
+            itemBuilder: (context, index) =>
+                searchResultWidgets.elementAt(index),
+            itemCount: searchResultWidgets.length,
+          )
+        : ListView.builder(
+            padding: EdgeInsets.zero,
+            itemBuilder: (context, index) =>
+                searchResultWidgets.elementAt(index),
+            itemCount: searchResultWidgets.length,
+          );
   }
 }

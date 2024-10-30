@@ -44,6 +44,7 @@ class PatientNameField extends ConsumerWidget with AppMixins {
             if (!authenticated) return;
           }
 
+          /// get decryptedpatient data model from the add patient modal
           final patientModelUpdated =
               // ignore: use_build_context_synchronously
               await context.openModalPage<PatientModel?>(
@@ -67,19 +68,20 @@ class PatientGenderField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // final padding = Theme.of(context).inputDecorationTheme.contentPadding ??
+    //     const EdgeInsets.all(16);
+
     final name = PatientDataModelProps.gender.name;
     return ReactiveDropdownField<String>(
       formControlName: name,
       decoration: context.inputDecorOutline(
         labelText: name.titleCase,
-        //contentPadding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+        contentPadding: AppConst.dropdownFieldPadding,
       ),
       items: S.current.genderList
           .split(',')
           .map((e) => DropdownMenuItem(value: e, child: Text(e)))
           .toList(),
-      // showErrors: (control) =>
-      //     control.invalid && control.touched && control.dirty,
     );
   }
 }

@@ -1,22 +1,86 @@
+import 'package:annotations/annotations.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:l10n/l10n.dart';
+import 'package:ui/ui.dart';
 
+import '../../app/app.dart';
+import '../../search/search.dart';
 import '../media.dart';
 
-class MediaPage extends ConsumerWidget {
+class MediaPage extends ConsumerStatefulWidget {
   const MediaPage({super.key});
 
-  static Page<void> page() => const MaterialPage<void>(child: MediaPage());
+  @override
+  ConsumerState<ConsumerStatefulWidget> createState() => _MediaPageState();
+}
+
+class _MediaPageState extends ConsumerState<MediaPage> {
+  final _scrollController = ScrollController();
+
+  @override
+  void dispose() {
+    Future<void>.delayed(Durations.short1)
+        .then((_) => _scrollController.dispose());
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      key: const Key('__medias_page_scaffold_key__'),
+      backgroundColor: context.colorScheme.surface,
+      appBar: AppBar(
+        elevation: 0,
+        toolbarHeight: 0,
+        surfaceTintColor: context.colorScheme.surfaceTint,
+      ),
+      body: CustomScrollView(
+        controller: _scrollController,
+        physics: const BouncingScrollPhysics(
+          parent: AlwaysScrollableScrollPhysics(),
+        ),
+        slivers: [
+          const MediaAppBar(),
+          const CaseMediaSearchBar(
+            searchType: SearchType.media,
+          ),
+          CupertinoSliverRefreshControl(
+            builder: customScrollViewRefreshIndicator,
+            refreshTriggerPullDistance: AppConst.kRefreshTriggerPullDistance,
+            onRefresh: () =>
+                ref.watch(mediaNotifierProvider.notifier).pullToRefresh(),
+          ),
+          const _MediaBody(),
+        ],
+      ),
+    );
+  }
+}
+
+class _MediaBody extends ConsumerWidget {
+  const _MediaBody();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final notifier = ref.watch(mediaNotifierProvider.notifier);
+    final stream = ref.watch(mediaNotifierProvider);
 
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('MediaScreen'),
-      ),
-      body: const MediaView(),
+    return stream.when(
+      data: (data) {
+        if (data.results.isEmpty) {
+          return SliverFillRemaining(
+            child: Loading(
+              text: S.of(context).noMedia,
+            ),
+          );
+        }
+        return MediaView(
+          mediaModels: data.results,
+        );
+      },
+      error: buildErrorSliver,
+      loading: buildLoadingSliver,
     );
   }
 }

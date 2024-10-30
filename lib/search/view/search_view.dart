@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:animations/animations.dart';
+import 'package:annotations/annotations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -20,12 +21,14 @@ class SearchView<T> extends ConsumerStatefulWidget {
   const SearchView({
     required this.anchorStyle,
     required this.onSearch,
+    required this.searchType,
     this.hintText = 'search',
     super.key,
   });
 
   final SearchBarStyle anchorStyle;
   final RealmResults<T>? Function(String) onSearch;
+  final SearchType searchType;
   final String? hintText;
 
   @override
@@ -40,10 +43,14 @@ class _SearchViewState<T> extends ConsumerState<SearchView<T>> {
 
   bool _showResults = false;
 
+  late ValueNotifier<SearchType> _searchTypeNotifier;
+
   final searchController = SearchController();
 
   @override
   void initState() {
+    _searchTypeNotifier = ValueNotifier<SearchType>(widget.searchType);
+
     SchedulerBinding.instance.addPostFrameCallback((_) {
       _searchHistory =
           ref.read(localStorageProvider).getCaseMediaRecentSearches();
@@ -151,6 +158,11 @@ class _SearchViewState<T> extends ConsumerState<SearchView<T>> {
           _focusNode.unfocus();
         },
       ),
+      viewTrailing: [
+        _SearchTypeWidget(
+          searchTypeNotifier: _searchTypeNotifier,
+        ),
+      ],
       builder: (BuildContext context, SearchController controller) {
         return widget.anchorStyle == SearchBarStyle.bar
             ? SearchBar(
@@ -199,7 +211,10 @@ class _SearchViewState<T> extends ConsumerState<SearchView<T>> {
             );
           },
           child: _showResults
-              ? ResultsView<T>(children)
+              ? ResultsView<T>(
+                  children,
+                  searchType: widget.searchType,
+                )
               : SuggestionsView(children, (int index) {
                   _searchHistory.removeAt(index);
                   ref
@@ -230,5 +245,35 @@ class _SearchViewState<T> extends ConsumerState<SearchView<T>> {
     );
 
     return child;
+  }
+}
+
+///  Search type toggle switcher
+class _SearchTypeWidget extends ConsumerWidget {
+  const _SearchTypeWidget({required this.searchTypeNotifier});
+
+  final ValueNotifier<SearchType> searchTypeNotifier;
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    return ValueListenableBuilder<SearchType>(
+      valueListenable: searchTypeNotifier,
+      builder: (_, searchType, __) {
+        if (searchType == SearchType.cases) {
+          return IconButton(
+            onPressed: () => _toggle(SearchType.media),
+            icon: const Icon(Icons.list_alt),
+          );
+        } else {
+          return IconButton(
+            onPressed: () => _toggle(SearchType.cases),
+            icon: const Icon(Icons.photo),
+          );
+        }
+      },
+    );
+  }
+
+  void _toggle(SearchType searchType) {
+    searchTypeNotifier.value = searchType;
   }
 }

@@ -1,4 +1,4 @@
-part of 'search_page.dart';
+part of 'search_view.dart';
 
 class SuggestionsView extends ConsumerWidget {
   const SuggestionsView(this.children, this.onRemove, {super.key});

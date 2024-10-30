@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:ui/ui.dart';
 
-class CasesAppBar extends StatelessWidget {
-  const CasesAppBar({super.key});
+class MediaAppBar extends StatelessWidget {
+  const MediaAppBar({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +18,7 @@ class CasesAppBar extends StatelessWidget {
           children: [
             Expanded(
               child: Text(
-                'Surgery Cases',
+                'Surgery Media',
                 textAlign: TextAlign.left,
                 style: Theme.of(context)
                     .textTheme

@@ -23,10 +23,8 @@ class AddTemplateSeeder extends _$AddTemplateSeeder {
 
   /// called by view with passed param caseID to load case model
   void seed(String templateID, String userSpeciality) {
-    final templateModel = ref
-        .watch(collectionsProvider)
-        .templatesCollection
-        .getSingle(templateID);
+    final templateModel =
+        ref.watch(dbProvider).templatesCollection.getSingle(templateID);
 
     final model = templateModel ?? TemplateModelX.zero()
       ..speciality = userSpeciality;
@@ -112,10 +110,7 @@ class AddTemplateNotifier extends _$AddTemplateNotifier
       //   return;
       // }
 
-      await ref
-          .watch(collectionsProvider)
-          .templatesCollection
-          .add(modelToSubmit);
+      await ref.watch(dbProvider).templatesCollection.add(modelToSubmit);
 
       state = StateOf<TemplateModel>.success(modelToSubmit);
     } catch (err) {

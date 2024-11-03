@@ -56,12 +56,17 @@ class _SearchViewState<T> extends ConsumerState<SearchView<T>> {
           ref.read(localStorageProvider).getCaseMediaRecentSearches();
     });
 
+    _searchTypeNotifier.addListener(() {
+      setState(() => {});
+    });
+
     super.initState();
   }
 
   @override
   void dispose() {
     searchController.dispose();
+    _searchTypeNotifier.dispose();
     super.dispose();
   }
 

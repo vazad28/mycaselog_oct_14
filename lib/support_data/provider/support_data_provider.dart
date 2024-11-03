@@ -16,7 +16,7 @@ class SupportDataNotifier extends _$SupportDataNotifier {
   @override
   SupportDataModel build() {
     final sub = ref
-        .watch(collectionsProvider)
+        .watch(dbProvider)
         .supportDataCollection
         .getAll()
         .changes
@@ -31,7 +31,7 @@ class SupportDataNotifier extends _$SupportDataNotifier {
 
   Future<void> _updateSupportData(SupportDataModel supportDataModel) async {
     try {
-      await ref.watch(collectionsProvider).supportDataCollection.upsert(
+      await ref.watch(dbProvider).supportDataCollection.upsert(
             () => supportDataModel..timestamp = ModelUtils.getTimestamp,
           );
     } catch (err) {
@@ -50,20 +50,24 @@ class SupportDataNotifier extends _$SupportDataNotifier {
   void upsertAssistant(AssistantModel model, CrudAction action) {
     if (action == CrudAction.delete) {
       _updateSupportData(
-          state..assistants.removeComplex(model, (e) => e.assistantID),);
+        state..assistants.removeComplex(model, (e) => e.assistantID),
+      );
     } else {
       _updateSupportData(
-          state..assistants.replaceOrAddComplex(model, (e) => e.assistantID),);
+        state..assistants.replaceOrAddComplex(model, (e) => e.assistantID),
+      );
     }
   }
 
   void upsertSurgeryLocation(SurgeryLocationModel model, CrudAction action) {
     if (action == CrudAction.delete) {
       _updateSupportData(
-          state..surgeryLocations.removeComplex(model, (e) => e.locationID),);
+        state..surgeryLocations.removeComplex(model, (e) => e.locationID),
+      );
     } else {
-      _updateSupportData(state
-        ..surgeryLocations.replaceOrAddComplex(model, (e) => e.locationID),);
+      _updateSupportData(
+        state..surgeryLocations.replaceOrAddComplex(model, (e) => e.locationID),
+      );
     }
   }
 

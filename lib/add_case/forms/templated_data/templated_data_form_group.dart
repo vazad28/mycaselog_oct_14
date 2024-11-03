@@ -28,7 +28,7 @@ class TemplatedDataFormGroup extends _$TemplatedDataFormGroup {
     if (caseModel.templateID == null) return FormGroup({});
 
     final templateModel = ref
-        .watch(collectionsProvider)
+        .watch(dbProvider)
         .templatesCollection
         .getSingle(caseModel.templateID!);
 

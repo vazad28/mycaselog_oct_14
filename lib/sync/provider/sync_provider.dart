@@ -15,7 +15,7 @@ part '../../generated/sync/provider/sync_provider.g.dart';
 class SyncCollectionsMap extends _$SyncCollectionsMap {
   @override
   Map<DbCollection, RealmCollection> build() {
-    final database = ref.watch(collectionsProvider);
+    final database = ref.watch(dbProvider);
 
     final collectionsMap = <DbCollection, RealmCollection>{
       DbCollection.cases: database.casesCollection,

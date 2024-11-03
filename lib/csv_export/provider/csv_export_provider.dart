@@ -70,7 +70,7 @@ class CsvExportNotifier extends _$CsvExportNotifier {
   Future<void> _createCsvData() async {
     final values = <Map<String, dynamic>>[];
 
-    final caseModels = ref.watch(collectionsProvider).casesCollection.getAll();
+    final caseModels = ref.watch(dbProvider).casesCollection.getAll();
 
     await Future<void>.delayed(const Duration(milliseconds: 1000));
 

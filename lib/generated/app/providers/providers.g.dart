@@ -146,9 +146,9 @@ String _$collectionsHash() => r'a81328ee2e8fd42cfb8c7344e56f6f560ecc623c';
 
 /// See also [collections].
 @ProviderFor(collections)
-final collectionsProvider = Provider<Collections>.internal(
+final dbProvider = Provider<Collections>.internal(
   collections,
-  name: r'collectionsProvider',
+  name: r'dbProvider',
   debugGetCreateSourceHash:
       const bool.fromEnvironment('dart.vm.product') ? null : _$collectionsHash,
   dependencies: null,

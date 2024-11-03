@@ -17,19 +17,19 @@ mixin AppMixins {
   /// Collections Mixins
   /// ////////////////////////////////////////////////////////////////////
   StorageCollection storageCollection(WidgetRef ref) =>
-      ref.watch(collectionsProvider).storageCollection;
+      ref.watch(dbProvider).storageCollection;
 
   MediaCollection mediaCollection(WidgetRef ref) =>
-      ref.watch(collectionsProvider).mediaCollection;
+      ref.watch(dbProvider).mediaCollection;
 
   CasesCollection casesCollection(WidgetRef ref) =>
-      ref.watch(collectionsProvider).casesCollection;
+      ref.watch(dbProvider).casesCollection;
 
   SettingsCollection settingsCollection(WidgetRef ref) =>
-      ref.watch(collectionsProvider).settingsCollection;
+      ref.watch(dbProvider).settingsCollection;
 
   SupportDataCollection supportDataCollection(WidgetRef ref) =>
-      ref.watch(collectionsProvider).supportDataCollection;
+      ref.watch(dbProvider).supportDataCollection;
 
   /// ////////////////////////////////////////////////////////////////////
   /// Show hide bottom nav bar Mixins
@@ -81,7 +81,7 @@ mixin AppMixins {
       /// delete from firestore because we need to make sure the error deleting
       /// files does not compromise this part
       await ref
-          .watch(collectionsProvider)
+          .watch(dbProvider)
           .mediaCollection
           .upsert(() => mediaModel..removed = 1);
     }

@@ -46,11 +46,11 @@ class NoteTileStyle extends _$NoteTileStyle {
 class NotesNotifier extends _$NotesNotifier {
   @override
   Stream<RealmResultsChanges<NoteModel>> build() {
-    return ref.watch(collectionsProvider).notesCollection.getAll().changes;
+    return ref.watch(dbProvider).notesCollection.getAll().changes;
   }
 
   /// Full text search notes
   RealmResults<NoteModel> searchNotes(String searchTerm) {
-    return ref.watch(collectionsProvider).notesCollection.search(searchTerm);
+    return ref.watch(dbProvider).notesCollection.search(searchTerm);
   }
 }

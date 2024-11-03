@@ -27,7 +27,8 @@ class AuthFlowPage extends ConsumerWidget {
           ],
           authenticated: () => [
             SharedAxisTransitionPage(
-              key: const ValueKey('__AuthFlowPage_PasscodePage_route_key__'),
+              key: const ValueKey(
+                  '__AuthFlowPage_AuthenticatedPage_route_key__'),
               child: const SizedBox.shrink(),
             ),
           ],

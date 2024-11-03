@@ -6,17 +6,20 @@ import '../../auto_complete/auto_complete.dart';
 
 class AddCaseAutoCompleteDelegate extends SearchDelegate<String?> {
   AddCaseAutoCompleteDelegate({
+    required this.hintText,
     required this.autocompleteListType,
     this.onQueryStringList,
     this.onQueryMapList,
-  }) : assert(
+  })  : assert(
           (onQueryStringList == null) ^ (onQueryMapList == null),
           'Either onQueryStringList or onQueryMapList method must be provided',
-        );
+        ),
+        super(searchFieldLabel: hintText);
 
   final AutoCompleteDataType autocompleteListType;
   final Future<List<String>>? Function(String?)? onQueryStringList;
   final List<MapEntry<String, String>>? Function(String?)? onQueryMapList;
+  final String hintText;
 
   @override
   List<Widget> buildActions(BuildContext context) {

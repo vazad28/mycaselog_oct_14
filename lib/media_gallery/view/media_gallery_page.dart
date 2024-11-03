@@ -133,7 +133,7 @@ class _MediaGalleryPageController extends ConsumerState<MediaGalleryPage>
         throw const AppException.generic('Media not found');
       }
 
-      ref.watch(collectionsProvider).mediaCollection.upsert(() => mediaModel);
+      ref.watch(dbProvider).mediaCollection.upsert(() => mediaModel);
 
       mediaModels
         ..removeAt(index)

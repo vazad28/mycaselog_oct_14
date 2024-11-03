@@ -21,14 +21,14 @@ class AutoCompleteNotifier extends _$AutoCompleteNotifier {
 
   Future<List<String>> diagnosisAutoComplete(String? query) {
     return ref
-        .watch(collectionsProvider)
+        .watch(dbProvider)
         .casesCollection
         .getAutoCompleteData(query, BasicDataModelProps.diagnosis.name);
   }
 
   Future<List<String>> surgeryAutoComplete(String? query) {
     return ref
-        .watch(collectionsProvider)
+        .watch(dbProvider)
         .casesCollection
         .getAutoCompleteData(query, BasicDataModelProps.surgery.name);
   }

@@ -5,11 +5,12 @@ import 'package:models/models.dart';
 import 'package:ui/ui.dart';
 
 import '../../cases/cases.dart';
+import '../../media/media.dart';
 import '../search.dart';
 
 part './cases/cases_tile_style.dart';
 
-class CaseMediaSearchBar extends ConsumerWidget {
+class CaseMediaSearchBar extends ConsumerWidget with SearchMixin {
   const CaseMediaSearchBar({
     required this.searchType,
     super.key,
@@ -28,18 +29,27 @@ class CaseMediaSearchBar extends ConsumerWidget {
       shadowColor: context.colorScheme.shadow.lighter(),
       surfaceTintColor: context.colorScheme.surface,
       titleSpacing: AppSpacing.md,
-      title: SearchView<CaseModel>(
-        anchorStyle: SearchBarStyle.bar,
-        searchType: searchType,
-        onSearch: (searchTerm) {
-          return ref
-              .watch(casesNotifierProvider.notifier)
-              .searchCases(searchTerm);
-        },
+      bottom: const PreferredSize(
+        preferredSize: Size.fromHeight(4),
+        child: SizedBox.shrink(),
       ),
-      actions: const [
-        CaseTileStyleWidget(),
-        SizedBox(width: AppSpacing.sm),
+      title: searchType == SearchType.cases
+          ? SearchView<CaseModel>(
+              anchorStyle: SearchBarStyle.bar,
+              searchType: searchType,
+              onSearch: (searchTerm) => searchCases(ref, searchTerm),
+            )
+          : SearchView<MediaModel>(
+              anchorStyle: SearchBarStyle.bar,
+              searchType: searchType,
+              onSearch: (searchTerm) => searchMedia(ref, searchTerm),
+            ),
+      actions: [
+        if (searchType == SearchType.cases)
+          const CaseTileStyleWidget()
+        else
+          const MediaTileStyleToggle(),
+        const SizedBox(width: AppSpacing.sm),
       ],
     );
   }

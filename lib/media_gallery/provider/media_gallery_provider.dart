@@ -24,5 +24,5 @@ final currMediaModelProvider =
 FutureOr<CaseModel?> currCaseModel(CurrCaseModelRef ref) {
   final caseID = ref.watch(currCaseIDProvider);
   if (caseID == null) return null;
-  return ref.watch(collectionsProvider).casesCollection.getSingle(caseID);
+  return ref.watch(dbProvider).casesCollection.getSingle(caseID);
 }

@@ -34,7 +34,7 @@ class CasesNotifier extends _$CasesNotifier {
     // });
 
     return ref
-        .watch(collectionsProvider)
+        .watch(dbProvider)
         .casesCollection
         .getAll(orderByField: BasicDataModelProps.surgeryDate.name)
         .changes;
@@ -42,16 +42,13 @@ class CasesNotifier extends _$CasesNotifier {
 
   /// Full text search cases
   RealmResults<CaseModel> searchCases(String searchTerm) {
-    return ref.watch(collectionsProvider).casesCollection.search(searchTerm);
+    return ref.watch(dbProvider).casesCollection.search(searchTerm);
   }
 
   Future<void> pullToRefresh() {
     try {
       return Future<void>.delayed(const Duration(milliseconds: 1600)).then((_) {
-        return ref
-            .watch(collectionsProvider)
-            .casesCollection
-            .refreshBacklinks();
+        return ref.watch(dbProvider).casesCollection.refreshBacklinks();
       });
     } catch (err) {
       ref.watch(dialogServiceProvider).showSnackBar('Refresh failed');

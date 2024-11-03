@@ -19,6 +19,8 @@ analyzer:
     mixin_with_non_class_superclass: ignore
   language:
     strict-raw-types: false
+  enable-experiment:
+    - macros
   exclude:
     - "**/*.g.dart"
     - "**/*.freezed.dart"

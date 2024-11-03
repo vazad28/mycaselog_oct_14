@@ -38,8 +38,7 @@ final thumbnailActions = [
 
 final mediaModelProvider = StreamProvider.autoDispose
     .family<MediaModel, String>((ref, mediaID) async* {
-  final mediaObject =
-      ref.watch(collectionsProvider).mediaCollection.getSingle(mediaID);
+  final mediaObject = ref.watch(dbProvider).mediaCollection.getSingle(mediaID);
 
   yield* mediaObject?.changes.map((event) => event.object) ??
       const Stream.empty();

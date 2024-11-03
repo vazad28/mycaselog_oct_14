@@ -33,8 +33,7 @@ class AddCaseSeeder extends _$AddCaseSeeder {
       state = AsyncValue.data(CaseModelX.zero());
       return;
     }
-    final caseModel =
-        ref.watch(collectionsProvider).casesCollection.getSingle(caseID);
+    final caseModel = ref.watch(dbProvider).casesCollection.getSingle(caseID);
 
     if (caseModel == null) {
       state = AsyncValue.error('No case', StackTrace.current);
@@ -53,7 +52,7 @@ class CurrentCaseTemplate extends _$CurrentCaseTemplate {
     if (caseModel.templateID == null) return null;
 
     return ref
-        .watch(collectionsProvider)
+        .watch(dbProvider)
         .templatesCollection
         .getSingle(caseModel.templateID!);
   }
@@ -163,6 +162,16 @@ class AddCaseNotifier extends _$AddCaseNotifier {
       if (modelToSubmit == null) {
         state = StateOf<CaseModel>.failure(Exception('Missing data'));
         return;
+      }
+
+      /// UPSERT the case to the database
+      await ref.watch(dbProvider).casesCollection.add(modelToSubmit);
+
+      /// set last used location as default location to use next time
+      if (modelToSubmit.location != null) {
+        ref
+            .read(localStorageProvider)
+            .setDefaultSurgeryLocation(modelToSubmit.location!);
       }
 
       state = StateOf<CaseModel>.success(modelToSubmit);

@@ -12,8 +12,7 @@ class SettingsNotifier extends _$SettingsNotifier {
   @override
   SettingsModel build() {
     final userID = ref.read(authenticationUserProvider).id;
-    final settings =
-        ref.watch(collectionsProvider).settingsCollection.getSingle(userID);
+    final settings = ref.watch(dbProvider).settingsCollection.getSingle(userID);
     return settings?.toUnmanaged() ?? SettingsModelX.zero(userID);
   }
 
@@ -21,7 +20,7 @@ class SettingsNotifier extends _$SettingsNotifier {
   void _updateSettings(SettingsModel settingsModel) {
     try {
       ref
-          .watch(collectionsProvider)
+          .watch(dbProvider)
           .settingsCollection
           .upsert(
             () => settingsModel..timestamp = ModelUtils.getTimestamp,
@@ -47,7 +46,7 @@ class TemplatesCount extends _$TemplatesCount {
   @override
   int build() {
     final sub = ref
-        .watch(collectionsProvider)
+        .watch(dbProvider)
         .templatesCollection
         .getAll()
         .changes

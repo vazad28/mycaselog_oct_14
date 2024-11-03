@@ -88,4 +88,41 @@ class CasesCollection extends RealmCollection<CaseModel>
   /// Refreshes media backlinks for a given list of CaseModel objects
   /// or all cases if not provided.
   void refreshBacklinks() => refreshCasesBacklinks(realm, null);
+
+  /// Retrieves cases that fall within a specific date range and optionally
+  /// filtered by case IDs.
+  ///
+  /// Takes the start and end timestamps and an optional list of case IDs
+  /// as parameters.
+  /// Filters cases based on the removed flag being set to false and the
+  /// surgery date falling within the provided timestamp range.
+  /// If a list of case IDs is provided, further filters the results to include
+  /// only cases with matching IDs.
+
+  /// Get cases between two timestamps among caseIDs
+  RealmResults<CaseModel> casesBetweenTimestamp({
+    required int fromTimestamp,
+    required int toTimestamp,
+    Iterable<String>? idList,
+  }) {
+    final params = [0, fromTimestamp, toTimestamp];
+    final cases = realm.query<CaseModel>(
+      r'''
+        removed == $0 AND 
+        surgeryDate BETWEEN{$1, $2}''',
+      params,
+    );
+    return idList != null ? cases.query(r'caseID IN $0', [idList]) : cases;
+  }
+
+  /// Retrieves a list of CaseModel objects based on their case IDs.
+  RealmResults<CaseModel> getAllByCaseIDs(List<String> caseIDs) {
+    return realm.query<CaseModel>(r'caseID IN $0', [caseIDs]);
+  }
+
+  /// Retrieves the year of the first case in the database.
+  int? firstCaseYear() {
+    final cases = realm.query<CaseModel>('TRUEPREDICATE SORT(surgeryDate ASC)');
+    return cases.isEmpty ? null : cases.first.surgeryDate;
+  }
 }

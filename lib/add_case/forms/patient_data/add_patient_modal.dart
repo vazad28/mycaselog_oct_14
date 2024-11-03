@@ -4,10 +4,10 @@ part of '../forms_provider.dart';
 class AddPatientModal extends ConsumerStatefulWidget {
   const AddPatientModal({
     super.key,
-    this.decryptedPatientModel,
+    this.patientModel,
   });
 
-  final DecryptedPatientModel? decryptedPatientModel;
+  final PatientModel? patientModel;
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() =>
@@ -16,15 +16,14 @@ class AddPatientModal extends ConsumerStatefulWidget {
 
 /// AddPatientModal CONTROLLER Widget
 class _AddPatientModalController extends ConsumerState<AddPatientModal> {
-  late DecryptedPatientModel decryptedPatientModel;
+  late PatientModel patientModel;
 
   /// Placeholder  variable for our form
   late FormGroup form;
 
   @override
   void initState() {
-    decryptedPatientModel =
-        widget.decryptedPatientModel ?? DecryptedPatientModel.zero();
+    patientModel = widget.patientModel ?? PatientModelX.zero();
 
     form = createFormGroup();
 
@@ -39,16 +38,16 @@ class _AddPatientModalController extends ConsumerState<AddPatientModal> {
   /// controller methods
   FormGroup createFormGroup() {
     final controls = <String, AbstractControl<Object?>>{
-      DecryptedPatientDataModelProps.name.name: FormControl<String>(
-        value: decryptedPatientModel.name,
+      PatientDataModelProps.name.name: FormControl<String>(
+        value: patientModel.name,
         validators: [Validators.required],
       ),
-      DecryptedPatientDataModelProps.mrn.name: FormControl<String>(
-        value: decryptedPatientModel.mrn,
+      PatientDataModelProps.mrn.name: FormControl<String>(
+        value: patientModel.mrn,
         validators: [Validators.required],
       ),
-      DecryptedPatientDataModelProps.phone.name: FormControl<String>(
-        value: decryptedPatientModel.phone,
+      PatientDataModelProps.phone.name: FormControl<String>(
+        value: patientModel.phone,
       ),
     };
     return FormGroup(controls);
@@ -66,8 +65,8 @@ class _AddPatientModalController extends ConsumerState<AddPatientModal> {
       return;
     }
 
-    final formToModel = DecryptedPatientModel.fromJson(
-      decryptedPatientModel.toJson()..addAll(form.value),
+    final formToModel = PatientModelX.fromJson(
+      patientModel.toJson()..addAll(form.value),
     );
 
     context.pop(formToModel);
@@ -126,9 +125,12 @@ class _PatientFormFields extends ConsumerWidget with AppMixins {
     /// name field
     final Widget nameInputField = ReactiveTextField<String>(
       formControlName: PatientDataModelProps.name.name,
-      keyboardType: TextInputType.name,
       textCapitalization: TextCapitalization.words,
+      keyboardType: TextInputType.text,
       textInputAction: TextInputAction.next,
+      inputFormatters: [
+        FilteringTextInputFormatter.allow(RegExp('[a-zA-Z ]')),
+      ],
       autofocus: true,
       decoration: context.inputDecorOutline(
         labelText: '${PatientDataModelProps.name.name.titleCase} *',
@@ -149,12 +151,12 @@ class _PatientFormFields extends ConsumerWidget with AppMixins {
       children: <Widget>[
         //-- Patient name field
         nameInputField,
-        VerticalSpacer.large(),
+        const VerticalSpacer.large(),
         //--  MRN input field
         mrnInputField,
         //--- if activable field show phone
         if (activeFieldsList.contains(ActivableCaseField.phone)) ...[
-          VerticalSpacer.large(),
+          const VerticalSpacer.large(),
           ReactiveTextField<String>(
             formControlName: PatientDataModelProps.phone.name,
             keyboardType: TextInputType.number,

@@ -4,8 +4,8 @@ class CaseTileStyleWidget extends ConsumerWidget {
   const CaseTileStyleWidget({super.key});
 
   static const _tileDisplayIcons = [
-    Icon(Icons.list_alt),
     Icon(Icons.format_list_bulleted),
+    Icon(Icons.list_alt),
     Icon(Icons.storage),
   ];
 

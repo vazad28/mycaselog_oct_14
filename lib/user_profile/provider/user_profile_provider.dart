@@ -33,12 +33,8 @@ class UserProfileNotifier extends _$UserProfileNotifier {
 
   @override
   UserModel build() {
-    final sub = ref
-        .watch(collectionsProvider)
-        .userCollection
-        .getAll()
-        .changes
-        .listen((data) {
+    final sub =
+        ref.watch(dbProvider).userCollection.getAll().changes.listen((data) {
       if (data.results.isNotEmpty) {
         state = data.results.last.toUnmanaged();
       }
@@ -47,7 +43,7 @@ class UserProfileNotifier extends _$UserProfileNotifier {
     ref.onDispose(sub.cancel);
 
     return ref
-        .watch(collectionsProvider)
+        .watch(dbProvider)
         .userCollection
         .userModelFromUser(ref.read(authenticationUserProvider));
   }
@@ -77,7 +73,7 @@ class UserProfileNotifier extends _$UserProfileNotifier {
   void _updateUserModel(UserModel userModel) {
     /// we are not saving data if the user is anonymous as can happen on logout
     if (userModel.userID.isEmpty) return;
-    ref.watch(collectionsProvider).userCollection.upsert(() => userModel);
+    ref.watch(dbProvider).userCollection.upsert(() => userModel);
   }
 
   /// Upload user avatar photo
@@ -94,7 +90,7 @@ class UserProfileNotifier extends _$UserProfileNotifier {
     final file = File(localFile.path);
 
     await ref
-        .watch(collectionsProvider)
+        .watch(dbProvider)
         .storageCollection
         .uploadAvatar(file)
         .then((value) {
@@ -112,8 +108,8 @@ class UserProfileNotifier extends _$UserProfileNotifier {
 @riverpod
 UserStatsModel userMiniStats(UserMiniStatsRef ref) {
   return UserStatsModel(
-    cases: ref.watch(collectionsProvider).casesCollection.countAll(),
-    //media: ref.watch(collectionsProvider).mediaCollection.countAll(),
-    notes: ref.watch(collectionsProvider).notesCollection.countAll(),
+    cases: ref.watch(dbProvider).casesCollection.countAll(),
+    //media: ref.watch(dbProvider).mediaCollection.countAll(),
+    notes: ref.watch(dbProvider).notesCollection.countAll(),
   );
 }

@@ -1,7 +1,7 @@
 part of 'providers.dart';
 
 @Riverpod(keepAlive: true)
-Future<RealmDatabase> realmDatabase(RealmDatabaseRef ref) async {
+Future<RealmDatabase> realmDatabase(Ref ref) async {
   final userFuture = ref.watch(authenticationUserStreamProvider.future);
 
   final user = await userFuture;
@@ -18,7 +18,7 @@ Future<RealmDatabase> realmDatabase(RealmDatabaseRef ref) async {
 }
 
 @Riverpod(keepAlive: true)
-Collections collections(CollectionsRef ref) {
+Collections collections(Ref ref) {
   final realmDatabase = ref.watch(realmDatabaseProvider).requireValue;
   if (kDebugMode) print('creating collections provider');
   return Collections(realmDatabase: realmDatabase);
@@ -26,12 +26,12 @@ Collections collections(CollectionsRef ref) {
 
 @Riverpod(keepAlive: true)
 StreamController<DbException> databaseErrorController(
-  DatabaseErrorControllerRef ref,
+  Ref ref,
 ) {
   return StreamController<DbException>.broadcast();
 }
 
 @Riverpod(keepAlive: true)
-Stream<DbException> databaseErrorStream(DatabaseErrorStreamRef ref) {
+Stream<DbException> databaseErrorStream(Ref ref) {
   return ref.watch(databaseErrorControllerProvider).stream;
 }

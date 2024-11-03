@@ -27,27 +27,24 @@ class MediaGridTileStyle extends _$MediaGridTileStyle {
 class MediaNotifier extends _$MediaNotifier {
   @override
   Stream<RealmResultsChanges<MediaModel>> build() {
-    return ref.watch(collectionsProvider).mediaCollection.getAll().changes;
+    return ref.watch(dbProvider).mediaCollection.getAll().changes;
   }
 
   /// Full text search notes
   RealmResults<MediaModel> searchMedia(String searchTerm) {
     final caseResults =
-        ref.watch(collectionsProvider).casesCollection.search(searchTerm);
+        ref.watch(dbProvider).casesCollection.search(searchTerm);
 
     // list of case IDs matching the search term
     final ids = caseResults.map((e) => e.caseID);
 
-    return ref.watch(collectionsProvider).mediaCollection.search(ids);
+    return ref.watch(dbProvider).mediaCollection.search(ids);
   }
 
   Future<void> pullToRefresh() {
     try {
       return Future<void>.delayed(const Duration(milliseconds: 1600)).then((_) {
-        return ref
-            .watch(collectionsProvider)
-            .mediaCollection
-            .refreshBacklinks();
+        return ref.watch(dbProvider).mediaCollection.refreshBacklinks();
       });
     } catch (err) {
       ref.watch(dialogServiceProvider).showSnackBar('Refresh failed');

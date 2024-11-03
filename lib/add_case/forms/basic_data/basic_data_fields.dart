@@ -41,6 +41,7 @@ class DiagnosisField extends ConsumerWidget {
           context: context,
           query: control.value,
           delegate: AddCaseAutoCompleteDelegate(
+            hintText: 'diagnosis',
             autocompleteListType: AutoCompleteDataType.string,
             onQueryStringList: (query) {
               return ref
@@ -79,6 +80,7 @@ class SurgeryField extends ConsumerWidget {
           context: context,
           query: control.value,
           delegate: AddCaseAutoCompleteDelegate(
+            hintText: 'surgery',
             autocompleteListType: AutoCompleteDataType.string,
             onQueryStringList: (query) {
               return ref

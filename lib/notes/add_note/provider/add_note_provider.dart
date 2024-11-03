@@ -31,8 +31,7 @@ class AddNoteSeeder extends _$AddNoteSeeder {
 
   /// called by view with passed param caseID to load case model
   Future<void> seed(String noteID) async {
-    final noteModel =
-        ref.watch(collectionsProvider).notesCollection.getSingle(noteID);
+    final noteModel = ref.watch(dbProvider).notesCollection.getSingle(noteID);
 
     final model = noteModel ?? NoteModelX.zero();
 
@@ -115,7 +114,7 @@ class AddNoteNotifier extends _$AddNoteNotifier
       /// everything checks out
       final modelToSubmit = createModelToSave();
 
-      await ref.watch(collectionsProvider).notesCollection.add(modelToSubmit);
+      await ref.watch(dbProvider).notesCollection.add(modelToSubmit);
 
       state = StateOf<NoteModel>.success(modelToSubmit);
     } catch (err) {

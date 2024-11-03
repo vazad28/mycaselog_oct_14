@@ -20,7 +20,7 @@ class TemplatesNotifier extends _$TemplatesNotifier {
     final showActiveOnly = ref.watch(showActiveTemplatesProvider);
 
     return ref
-        .watch(collectionsProvider)
+        .watch(dbProvider)
         .templatesCollection
         .getAll()
         .changes
@@ -35,7 +35,7 @@ class TemplatesNotifier extends _$TemplatesNotifier {
     TemplateModel templateModel,
     TemplateEvent event,
   ) {
-    return ref.watch(collectionsProvider).templatesCollection.upsert(
+    return ref.watch(dbProvider).templatesCollection.upsert(
       () {
         return switch (event) {
           TemplateEvent.share => templateModel..shared = true,

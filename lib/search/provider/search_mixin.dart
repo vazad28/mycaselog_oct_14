@@ -7,18 +7,18 @@ import '../../app/app.dart';
 mixin SearchMixin {
   /// Full text search cases
   RealmResults<CaseModel> searchCases(WidgetRef ref, String searchTerm) {
-    return ref.watch(collectionsProvider).casesCollection.search(searchTerm);
+    return ref.watch(dbProvider).casesCollection.search(searchTerm);
   }
 
   /// Full text search notes
   RealmResults<MediaModel> searchMedia(WidgetRef ref, String searchTerm) {
     final caseResults =
-        ref.watch(collectionsProvider).casesCollection.search(searchTerm);
+        ref.watch(dbProvider).casesCollection.search(searchTerm);
 
     // list of case IDs matching the search term
     final ids = caseResults.map((e) => e.caseID);
 
-    return ref.watch(collectionsProvider).mediaCollection.search(ids);
+    return ref.watch(dbProvider).mediaCollection.search(ids);
   }
 
   /// Full text search notes
@@ -26,6 +26,6 @@ mixin SearchMixin {
     WidgetRef ref,
     String searchTerm,
   ) {
-    return ref.watch(collectionsProvider).notesCollection.search(searchTerm);
+    return ref.watch(dbProvider).notesCollection.search(searchTerm);
   }
 }

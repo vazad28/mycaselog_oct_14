@@ -18,26 +18,17 @@ class ImageUploadService implements MediaUploadService {
 
   @override
   Reference getMediumRef(MediaModel mediaModel) {
-    return ref
-        .watch(collectionsProvider)
-        .storageCollection
-        .getMediumRef(mediaModel);
+    return ref.watch(dbProvider).storageCollection.getMediumRef(mediaModel);
   }
 
   @override
   Reference getOriginalRef(MediaModel mediaModel) {
-    return ref
-        .watch(collectionsProvider)
-        .storageCollection
-        .getOriginalRef(mediaModel);
+    return ref.watch(dbProvider).storageCollection.getOriginalRef(mediaModel);
   }
 
   @override
   Reference getThumbRef(MediaModel mediaModel) {
-    return ref
-        .watch(collectionsProvider)
-        .storageCollection
-        .getThumbRef(mediaModel);
+    return ref.watch(dbProvider).storageCollection.getThumbRef(mediaModel);
   }
 
   @override
@@ -53,7 +44,7 @@ class ImageUploadService implements MediaUploadService {
     }
 
     ref
-        .watch(collectionsProvider)
+        .watch(dbProvider)
         .mediaCollection
         .upsert(() => mediaModel..status = mediaStatus)
         .then((_) {
@@ -71,7 +62,7 @@ class ImageUploadService implements MediaUploadService {
     errorTracker.log('reached onUploadSucces $thumbUri');
 
     ///  update the database
-    await ref.watch(collectionsProvider).mediaCollection.upsert(
+    await ref.watch(dbProvider).mediaCollection.upsert(
           () => mediaModel
             ..fileUri = fullUri
             ..mediumUri = mediumUri

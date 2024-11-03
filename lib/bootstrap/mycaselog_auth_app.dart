@@ -5,6 +5,7 @@ import 'package:l10n/l10n.dart';
 
 import '../app/providers/providers.dart';
 import '../auth_flow/auth_flow.dart';
+import 'error_handler_widget.dart';
 
 class MycaselogAuthApp extends ConsumerWidget {
   const MycaselogAuthApp({super.key});
@@ -27,13 +28,15 @@ class MycaselogAuthApp extends ConsumerWidget {
       /// To define a customized error widget that displays whenever the builder
       /// fails to build a widget
       builder: (context, widget) {
-        Widget error = const Text('...rendering error...');
-        if (widget is Scaffold || widget is Navigator) {
-          error = Scaffold(body: Center(child: error));
-        }
-        ErrorWidget.builder = (errorDetails) => error;
-        if (widget != null) return widget;
+        if (widget != null) return ErrorHandlerWidget(child: widget);
         throw StateError('widget is null');
+        // Widget error = const Text('...rendering error...');
+        // if (widget is Scaffold || widget is Navigator) {
+        //   error = Scaffold(body: Center(child: error));
+        // }
+        // ErrorWidget.builder = (errorDetails) => error;
+        // if (widget != null) return widget;
+        // throw StateError('widget is null');
       },
     );
 

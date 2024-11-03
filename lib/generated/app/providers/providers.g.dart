@@ -125,7 +125,7 @@ final userIDProvider = AutoDisposeProvider<String>.internal(
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
 typedef UserIDRef = AutoDisposeProviderRef<String>;
-String _$realmDatabaseHash() => r'aebed22dc2877f03dded34716c911e945a63da87';
+String _$realmDatabaseHash() => r'e8b6236b439fb99610c73b030995b246d968a62c';
 
 /// See also [realmDatabase].
 @ProviderFor(realmDatabase)
@@ -142,24 +142,24 @@ final realmDatabaseProvider = FutureProvider<RealmDatabase>.internal(
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
 typedef RealmDatabaseRef = FutureProviderRef<RealmDatabase>;
-String _$collectionsHash() => r'a81328ee2e8fd42cfb8c7344e56f6f560ecc623c';
+String _$dbHash() => r'9c36bc0447644834aa10131dc163d41bc976c1c0';
 
-/// See also [collections].
-@ProviderFor(collections)
+/// See also [db].
+@ProviderFor(db)
 final dbProvider = Provider<Collections>.internal(
-  collections,
+  db,
   name: r'dbProvider',
   debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$collectionsHash,
+      const bool.fromEnvironment('dart.vm.product') ? null : _$dbHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
-typedef CollectionsRef = ProviderRef<Collections>;
+typedef DbRef = ProviderRef<Collections>;
 String _$databaseErrorControllerHash() =>
-    r'dd68992eb456b0b44996823fbbe57dc09bd191c9';
+    r'2edd02f9773875f22e23f7e7ec02c0e1eda7f311';
 
 /// See also [databaseErrorController].
 @ProviderFor(databaseErrorController)
@@ -178,7 +178,7 @@ final databaseErrorControllerProvider =
 // ignore: unused_element
 typedef DatabaseErrorControllerRef = ProviderRef<StreamController<DbException>>;
 String _$databaseErrorStreamHash() =>
-    r'38f335b3b77fff4dfb0cb41119504057e6ff4409';
+    r'db793e2f145f24da42b395f96bfa87d999a34b30';
 
 /// See also [databaseErrorStream].
 @ProviderFor(databaseErrorStream)

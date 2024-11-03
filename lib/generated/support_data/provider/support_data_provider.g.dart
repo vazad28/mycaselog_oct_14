@@ -7,7 +7,7 @@ part of '../../../support_data/provider/support_data_provider.dart';
 // **************************************************************************
 
 String _$supportDataNotifierHash() =>
-    r'c725b80410c12b7e318890e99f89190be4cce0d9';
+    r'4579425847c027e193629ba13e7aca518c4fa79b';
 
 /// See also [SupportDataNotifier].
 @ProviderFor(SupportDataNotifier)

@@ -15,6 +15,7 @@ class SupportDataCollection extends RealmCollection<SupportDataModel>
   @override
   Future<void> add(SupportDataModel model) {
     return realm.writeAsync(() {
+      model.timestamp = ModelUtils.getTimestamp;
       realm.add<SupportDataModel>(model, update: true);
     });
   }

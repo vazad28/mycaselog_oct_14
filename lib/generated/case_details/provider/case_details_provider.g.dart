@@ -6,17 +6,33 @@ part of '../../../case_details/provider/case_details_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$caseDetailsNotifierHash() =>
-    r'a53debd5600823dcad22fdcc15e667109c749484';
+String _$caseDetailsTemplateModelHash() =>
+    r'811dd13adf3b2bb13f09e89b2c67a543cbe9aa77';
 
-/// ////////////////////////////////////////////////////////////////////
-/// Main Provider
-/// ////////////////////////////////////////////////////////////////////
-///
-/// Copied from [CaseDetailsNotifier].
+/// See also [caseDetailsTemplateModel].
+@ProviderFor(caseDetailsTemplateModel)
+final caseDetailsTemplateModelProvider =
+    AutoDisposeProvider<AsyncValue<TemplateModel?>>.internal(
+  caseDetailsTemplateModel,
+  name: r'caseDetailsTemplateModelProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$caseDetailsTemplateModelHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+typedef CaseDetailsTemplateModelRef
+    = AutoDisposeProviderRef<AsyncValue<TemplateModel?>>;
+String _$caseDetailsNotifierHash() =>
+    r'a07c99b442a9a01b2d6673e5ef9883b4dd13532b';
+
+/// See also [CaseDetailsNotifier].
 @ProviderFor(CaseDetailsNotifier)
 final caseDetailsNotifierProvider = AutoDisposeNotifierProvider<
-    CaseDetailsNotifier, StateOf<CaseModel>>.internal(
+    CaseDetailsNotifier, AsyncValue<CaseModel>>.internal(
   CaseDetailsNotifier.new,
   name: r'caseDetailsNotifierProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
@@ -26,6 +42,6 @@ final caseDetailsNotifierProvider = AutoDisposeNotifierProvider<
   allTransitiveDependencies: null,
 );
 
-typedef _$CaseDetailsNotifier = AutoDisposeNotifier<StateOf<CaseModel>>;
+typedef _$CaseDetailsNotifier = AutoDisposeNotifier<AsyncValue<CaseModel>>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

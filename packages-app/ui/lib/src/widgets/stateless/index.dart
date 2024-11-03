@@ -2,6 +2,7 @@ export './app_button.dart';
 export './app_logo.dart';
 export './async_value_widget.dart';
 export './center_form_wrapper.dart';
+export './circle_widget.dart';
 export './dialog_page.dart';
 export './dismissible_list_tile.dart';
 export './dot_widget.dart';

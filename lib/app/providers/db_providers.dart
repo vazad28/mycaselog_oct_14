@@ -18,7 +18,7 @@ Future<RealmDatabase> realmDatabase(Ref ref) async {
 }
 
 @Riverpod(keepAlive: true)
-Collections collections(Ref ref) {
+Collections db(Ref ref) {
   final realmDatabase = ref.watch(realmDatabaseProvider).requireValue;
   if (kDebugMode) print('creating collections provider');
   return Collections(realmDatabase: realmDatabase);

@@ -10,7 +10,10 @@ class TemplatesCollection extends RealmCollection<TemplateModel>
 
   @override
   Future<void> add(TemplateModel model) {
-    return upsert(() => model..timestamp = ModelUtils.getTimestamp);
+    return realm.writeAsync(() {
+      model.timestamp = ModelUtils.getTimestamp;
+      realm.add<TemplateModel>(model, update: true);
+    });
   }
 
   @override

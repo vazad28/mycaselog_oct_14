@@ -6,7 +6,7 @@ part of '../../../user_profile/provider/user_profile_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$userMiniStatsHash() => r'ec65894716f1266cb4cf5d88127152e8054044c8';
+String _$userMiniStatsHash() => r'6b9ce9dddcf62a2d0ae5abaa3ee958ba131db37d';
 
 /// See also [userMiniStats].
 @ProviderFor(userMiniStats)
@@ -45,7 +45,7 @@ final signOutButtonNotifierProvider =
 
 typedef _$SignOutButtonNotifier = AutoDisposeNotifier<bool>;
 String _$userProfileNotifierHash() =>
-    r'31f0cffa3dc9bdf93ccd2193feab3d4dbc1c6ee9';
+    r'916bd3447cf95c770e0659ae1874b9a08ee01f03';
 
 /// ////////////////////////////////////////////////////////////////////
 /// Main Providers

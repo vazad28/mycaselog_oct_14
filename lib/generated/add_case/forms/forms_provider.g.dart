@@ -42,7 +42,7 @@ final patientDataFormGroupProvider =
 
 typedef _$PatientDataFormGroup = AutoDisposeNotifier<FormGroup>;
 String _$templatedDataFormGroupHash() =>
-    r'aa77ccada5b7a59830265b722f3cd7f89d7f5d6f';
+    r'd965247201e2595cc151715f6f3855c83b2b4d42';
 
 /// See also [TemplatedDataFormGroup].
 @ProviderFor(TemplatedDataFormGroup)

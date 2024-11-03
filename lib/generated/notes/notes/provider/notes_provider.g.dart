@@ -24,7 +24,7 @@ final noteTileStyleProvider =
 );
 
 typedef _$NoteTileStyle = AutoDisposeNotifier<NoteTileStyleEnum>;
-String _$notesNotifierHash() => r'a70eef6b01bed5496e3e5ca1645910a2c1c3058d';
+String _$notesNotifierHash() => r'e3998e15108a5f044ff7e69171ae5be8087497b0';
 
 /// See also [NotesNotifier].
 @ProviderFor(NotesNotifier)

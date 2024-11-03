@@ -6,7 +6,7 @@ part of '../../../media_gallery/provider/media_gallery_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$currCaseModelHash() => r'92e20482defa4a88c46518b61e470d507b743640';
+String _$currCaseModelHash() => r'f20dc655f6b3a6c0452cd1aa3f3497dc7367727a';
 
 /// ////////////////////////////////////////////////////////////////////
 /// Provider to watch current caseID and load the case data

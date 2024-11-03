@@ -6,7 +6,7 @@ part of '../../../settings/provider/settings_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$settingsNotifierHash() => r'cccdda212598b80cbfb8aaf4796ac92776b8344f';
+String _$settingsNotifierHash() => r'625b16feedd496a3a0b765321a1596e215f5d3d2';
 
 /// Use a Notifier provider so we can have access to the settings without async
 ///
@@ -24,7 +24,7 @@ final settingsNotifierProvider =
 );
 
 typedef _$SettingsNotifier = Notifier<SettingsModel>;
-String _$templatesCountHash() => r'50104f3385dcf0772f25498b2c475890b94e4e30';
+String _$templatesCountHash() => r'4349cac1048a2a91b8a6b87ba8ec97f04b98ed1f';
 
 /// Template count provider
 ///

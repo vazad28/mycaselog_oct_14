@@ -7,6 +7,7 @@ import 'package:ui/ui.dart';
 import '../app/app.dart';
 import '../router/router.dart';
 import '../settings/settings.dart';
+import 'error_handler_widget.dart';
 
 class MycaselogApp extends ConsumerWidget {
   const MycaselogApp({super.key});
@@ -27,13 +28,16 @@ class MycaselogApp extends ConsumerWidget {
       ],
       supportedLocales: S.delegate.supportedLocales,
       builder: (context, widget) {
-        Widget error = const Text('...rendering error...');
-        if (widget is Scaffold || widget is Navigator) {
-          error = Scaffold(body: Center(child: error));
-        }
-        ErrorWidget.builder = (errorDetails) => error;
-        if (widget != null) return widget;
+        if (widget != null) return ErrorHandlerWidget(child: widget);
         throw StateError('widget is null');
+
+        // Widget error = const Text('...rendering error...');
+        // if (widget is Scaffold || widget is Navigator) {
+        //   error = Scaffold(body: Center(child: error));
+        // }
+        // ErrorWidget.builder = (errorDetails) => error;
+        // if (widget != null) return widget;
+        // throw StateError('widget is null');
       },
     );
 

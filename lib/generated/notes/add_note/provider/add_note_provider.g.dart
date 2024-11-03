@@ -48,7 +48,7 @@ final addNoteFormGroupProvider = AutoDisposeProvider<FormGroup>.internal(
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
 typedef AddNoteFormGroupRef = AutoDisposeProviderRef<FormGroup>;
-String _$addNoteSeederHash() => r'6a1e90d05bf43f13bc7923beb39d5c115f416482';
+String _$addNoteSeederHash() => r'38a87bf2239b50c1f14125be8971246c9a3502bb';
 
 /// ////////////////////////////////////////////////////////////////////
 ///  seeder
@@ -68,7 +68,7 @@ final addNoteSeederProvider =
 );
 
 typedef _$AddNoteSeeder = AutoDisposeNotifier<NoteModel?>;
-String _$addNoteNotifierHash() => r'2f3ab95c4077d2da643cd36045915d718e326bb7';
+String _$addNoteNotifierHash() => r'cb710cd048b24818e42668b1cd7bb912178864df';
 
 /// ////////////////////////////////////////////////////////////////////
 /// Main provider of the  feature

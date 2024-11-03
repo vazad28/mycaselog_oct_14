@@ -28,7 +28,7 @@ final addTemplateFormGroupProvider = AutoDisposeProvider<FormGroup>.internal(
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
 typedef AddTemplateFormGroupRef = AutoDisposeProviderRef<FormGroup>;
-String _$addTemplateSeederHash() => r'bcfefd163a41bd56770d644f1c71ab4bb71c4743';
+String _$addTemplateSeederHash() => r'0483febbd19de5178cd3c276efd67d28e8a81fa6';
 
 /// ////////////////////////////////////////////////////////////////////
 ///  seeder
@@ -49,7 +49,7 @@ final addTemplateSeederProvider =
 
 typedef _$AddTemplateSeeder = AutoDisposeNotifier<TemplateModel?>;
 String _$addTemplateNotifierHash() =>
-    r'f50ffa1fae8868b5dca39fc96df3cd2264508a7c';
+    r'73c9d01b97c9f7d0d272a3509206c7e448170d21';
 
 /// ////////////////////////////////////////////////////////////////////
 /// Main Provider

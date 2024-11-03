@@ -37,22 +37,23 @@ abstract class RealmCollection<T extends RealmObject>
   /// ////////////////////////////////////////////////////////////////////
   /// WRITE METHODS
   /// ////////////////////////////////////////////////////////////////////
-  /// add new model to realm by using insert,
-  /// we keep
-  Future<void> add(T model);
+  Future<void> add(T model); // to force implementation
+
+  /// add new model to realm by using insert
+  // Future<void> insert(T model) {
+  //   return realm.writeAsync<T>(() {
+  //     return realm.add<T>(model);
+  //   });
+  // }
 
   // Upserts data in Realm by executing the provided callback function
   Future<T> upsert(T Function() upsertCallback) async {
-    try {
-      return realm.writeAsync<T>(() {
-        return realm.add<T>(
-          upsertCallback.call(),
-          update: true,
-        );
-      });
-    } catch (err) {
-      rethrow;
-    }
+    return realm.writeAsync<T>(() {
+      return realm.add<T>(
+        upsertCallback.call(),
+        update: true,
+      );
+    });
   }
 
   /// Insert data in Realm

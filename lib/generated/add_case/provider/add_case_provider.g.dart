@@ -6,7 +6,7 @@ part of '../../../add_case/provider/add_case_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$addCaseSeederHash() => r'3d7c7249244b29055d36e63d629cd4a9c0c97915';
+String _$addCaseSeederHash() => r'8902c60ebf576a0837ca012cc0cd342bfcd9d15c';
 
 /// ////////////////////////////////////////////////////////////////////
 ///  seeder
@@ -27,7 +27,7 @@ final addCaseSeederProvider =
 
 typedef _$AddCaseSeeder = AutoDisposeNotifier<AsyncValue<CaseModel>>;
 String _$currentCaseTemplateHash() =>
-    r'38402a80726561dfd6c09c86e97280773c851a72';
+    r'6e3426dd3306ed9c9bed5a139cd4d9831059f284';
 
 /// See also [CurrentCaseTemplate].
 @ProviderFor(CurrentCaseTemplate)
@@ -43,7 +43,7 @@ final currentCaseTemplateProvider =
 );
 
 typedef _$CurrentCaseTemplate = AutoDisposeNotifier<TemplateModel?>;
-String _$addCaseNotifierHash() => r'e5c69e86c39405ccc7cd84cf44853f119e2a2df5';
+String _$addCaseNotifierHash() => r'26c7c5cb3a13d1ba0603d4d1ca5bee44e0a03e6a';
 
 /// ////////////////////////////////////////////////////////////////////
 /// Main provider of the  feature

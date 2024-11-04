@@ -46,6 +46,9 @@ mixin AppMixins {
     }
   }
 
+  bool isBottomNavbarVisible(WidgetRef ref) =>
+      ref.read(bottomNavVisibilityProvider);
+
   /// ////////////////////////////////////////////////////////////////////
   /// Media Mixins
   /// ////////////////////////////////////////////////////////////////////
@@ -121,6 +124,11 @@ mixin AppMixins {
             .toList();
       }),
     );
+  }
+
+  /// Dialog Mixins
+  void showSnackBar(WidgetRef ref, String message) {
+    ref.watch(dialogServiceProvider).showSnackBar(message);
   }
 
   /// Encrypt patient Model

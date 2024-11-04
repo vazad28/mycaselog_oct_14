@@ -64,12 +64,9 @@ class _AsyncErrorWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Text(
-        err.toString(),
-        style: Theme.of(context)
-            .textTheme
-            .headlineSmall!
-            .copyWith(color: Colors.red),
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Text(err.toString()),
       ),
     );
   }

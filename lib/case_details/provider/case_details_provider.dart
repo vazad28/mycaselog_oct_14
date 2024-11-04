@@ -1,4 +1,6 @@
+import 'package:extensions/extensions.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:models/models.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -6,6 +8,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../../app/providers/providers.dart';
 
 part '../../generated/case_details/provider/case_details_provider.g.dart';
+part 'case_details_menu_actions.dart';
 part 'case_details_mixin.dart';
 
 /// ////////////////////////////////////////////////////////////////////

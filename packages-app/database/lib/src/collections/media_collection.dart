@@ -22,22 +22,14 @@ class MediaCollection extends RealmCollection<MediaModel>
   }
 
   @override
-  String getPrimaryKey(MediaModel model) {
-    // TODO: implement getPrimaryKey
-    throw UnimplementedError();
-  }
+  String getPrimaryKey(MediaModel model) => model.mediaID;
 
   @override
-  MediaModel mapToModel(Map<String, dynamic> json) {
-    // TODO: implement mapToModel
-    throw UnimplementedError();
-  }
+  MediaModel mapToModel(Map<String, dynamic> json) =>
+      MediaModelX.fromJson(json);
 
   @override
-  Map<String, dynamic> modelToMap(MediaModel model) {
-    // TODO: implement modelToMap
-    throw UnimplementedError();
-  }
+  Map<String, dynamic> modelToMap(MediaModel model) => model.toJson();
 
   /// ////////////////////////////////////////////////////////////////////
   /// Custom Methods

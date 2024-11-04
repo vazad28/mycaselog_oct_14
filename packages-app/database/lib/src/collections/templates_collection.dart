@@ -17,17 +17,12 @@ class TemplatesCollection extends RealmCollection<TemplateModel>
   }
 
   @override
-  String getPrimaryKey(TemplateModel model) {
-    return model.templateID;
-  }
+  String getPrimaryKey(TemplateModel model) => model.templateID;
 
   @override
-  TemplateModel mapToModel(Map<String, dynamic> json) {
-    return TemplateModelX.fromJson(json);
-  }
+  TemplateModel mapToModel(Map<String, dynamic> json) =>
+      TemplateModelX.fromJson(json);
 
   @override
-  Map<String, dynamic> modelToMap(TemplateModel model) {
-    return model.toJson();
-  }
+  Map<String, dynamic> modelToMap(TemplateModel model) => model.toJson();
 }

@@ -23,22 +23,14 @@ class TimelineNotesCollection extends RealmCollection<TimelineNoteModel>
   }
 
   @override
-  String getPrimaryKey(TimelineNoteModel model) {
-    // TODO: implement getPrimaryKey
-    throw UnimplementedError();
-  }
+  String getPrimaryKey(TimelineNoteModel model) => model.noteID;
 
   @override
-  TimelineNoteModel mapToModel(Map<String, dynamic> json) {
-    // TODO: implement mapToModel
-    throw UnimplementedError();
-  }
+  TimelineNoteModel mapToModel(Map<String, dynamic> json) =>
+      TimelineNoteModelX.fromJson(json);
 
   @override
-  Map<String, dynamic> modelToMap(TimelineNoteModel model) {
-    // TODO: implement modelToMap
-    throw UnimplementedError();
-  }
+  Map<String, dynamic> modelToMap(TimelineNoteModel model) => model.toJson();
 
   /// ////////////////////////////////////////////////////////////////////
   /// Custom Methods

@@ -20,22 +20,17 @@ class UserCollection extends RealmCollection<UserModel>
   }
 
   @override
-  String getPrimaryKey(UserModel model) {
-    // TODO: implement getPrimaryKey
-    throw UnimplementedError();
-  }
+  String getPrimaryKey(UserModel model) => model.userID;
 
   @override
-  UserModel mapToModel(Map<String, dynamic> json) {
-    // TODO: implement mapToModel
-    throw UnimplementedError();
-  }
+  UserModel mapToModel(Map<String, dynamic> json) => UserModelX.fromJson(json);
 
   @override
-  Map<String, dynamic> modelToMap(UserModel model) {
-    // TODO: implement modelToMap
-    throw UnimplementedError();
-  }
+  Map<String, dynamic> modelToMap(UserModel model) => model.toJson();
+
+  /// ////////////////////////////////////////////////////////////////////
+  /// Custom Methods
+  /// ////////////////////////////////////////////////////////////////////
 
   UserModel userModelFromUser(AuthenticationUser user) {
     return UserModelX.fromUser(

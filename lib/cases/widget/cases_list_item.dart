@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:models/models.dart';
 import 'package:ui/ui.dart';
 
+import '../../case_details/case_details.dart';
+import '../../router/router.dart';
 import '../cases.dart';
 
 class CasesListItem extends StatelessWidget {
@@ -25,8 +27,7 @@ class CasesListItem extends StatelessWidget {
       openColor: context.colorScheme.surface,
       closedElevation: 0,
       openBuilder: (context, action) {
-        return const Placeholder();
-        //return CaseDetailsPage(caseID: caseModel.caseID);
+        return CaseDetailsPage(caseID: caseModel.caseID);
       },
       tappable: false,
       closedBuilder: (context, action) {
@@ -61,7 +62,7 @@ class CasesListItem extends StatelessWidget {
     BuildContext context,
     CaseModel caseModel,
   ) {
-    //return AddCaseRoute(caseID: caseModel.caseID).push<void>(context);
+    return AddCaseRoute(caseID: caseModel.caseID).push<void>(context);
   }
 
   FutureOr _onLongPress(

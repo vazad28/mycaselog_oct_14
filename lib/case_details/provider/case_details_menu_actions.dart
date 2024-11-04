@@ -1,5 +1,4 @@
-import 'package:extensions/extensions.dart';
-import 'package:flutter/material.dart';
+part of 'case_details_provider.dart';
 
 /// Cases actions
 enum CaseDetailsActionEnum {

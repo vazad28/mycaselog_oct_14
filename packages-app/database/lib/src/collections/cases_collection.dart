@@ -9,9 +9,7 @@ class CasesCollection extends RealmCollection<CaseModel>
   String get path => '$root/$userID/${DbCollection.cases.name}';
 
   @override
-  String getPrimaryKey(CaseModel model) {
-    return model.caseID;
-  }
+  String getPrimaryKey(CaseModel model) => model.caseID;
 
   @override
   CaseModel mapToModel(Map<String, dynamic> json) {
@@ -24,7 +22,7 @@ class CasesCollection extends RealmCollection<CaseModel>
   }
 
   @override
-  Future<void> add(CaseModel model) async {
+  Future<void> add(CaseModel model) {
     return realm.writeAsync(() {
       model.timestamp = ModelUtils.getTimestamp;
       realm.add<CaseModel>(model, update: true);
@@ -62,8 +60,13 @@ class CasesCollection extends RealmCollection<CaseModel>
   /// Returns a RealmResults object containing the matching cases.
   RealmResults<CaseModel> _getAutoCompleteList(String? query, String field) {
     return (query == null)
-        ? realm.query<CaseModel>('$field CONTAINS ALL[*] LIMIT(50)')
-        : realm.query<CaseModel>('$field CONTAINS[c] \$0', [query]);
+        ? realm.query<CaseModel>(
+            '$field CONTAINS ALL[*] DISTINCT($field) LIMIT(50)',
+          )
+        : realm.query<CaseModel>(
+            '$field CONTAINS[c] \$0 DISTINCT($field) LIMIT(50)',
+            [query],
+          );
   }
 
   /// Searches for cases containing a specific search term in various fields.
@@ -76,11 +79,11 @@ class CasesCollection extends RealmCollection<CaseModel>
   RealmResults<CaseModel> search(String searchTerm) {
     return realm.query<CaseModel>(
       r'''
-        diagnosis TEXT $0 OR 
+        (diagnosis TEXT $0 OR 
         surgery TEXT $0 OR 
         comments TEXT $0 OR 
         patientModel.initials TEXT $0 OR 
-        patientModel.name TEXT $0 AND removed == 0 SORT(timestamp DESC)''',
+        patientModel.name TEXT $0) AND removed == 0 SORT(timestamp DESC)''',
       ['$searchTerm*'],
     );
   }

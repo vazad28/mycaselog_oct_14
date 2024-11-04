@@ -14,20 +14,12 @@ class SettingsCollection extends RealmCollection<SettingsModel>
   }
 
   @override
-  String getPrimaryKey(SettingsModel object) {
-    // TODO: implement getPrimaryKey
-    throw UnimplementedError();
-  }
+  String getPrimaryKey(SettingsModel model) => model.userID;
 
   @override
-  SettingsModel mapToModel(Map<String, dynamic> data) {
-    // TODO: implement mapToModel
-    throw UnimplementedError();
-  }
+  SettingsModel mapToModel(Map<String, dynamic> json) =>
+      SettingsModelX.fromJson(json);
 
   @override
-  Map<String, dynamic> modelToMap(SettingsModel object) {
-    // TODO: implement modelToMap
-    throw UnimplementedError();
-  }
+  Map<String, dynamic> modelToMap(SettingsModel model) => model.toJson();
 }

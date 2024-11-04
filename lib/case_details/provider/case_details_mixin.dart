@@ -45,10 +45,10 @@ mixin CaseDetailsMixin {
       caseModelJson['createdAt'] = newTimestamp;
       caseModelJson['timestamp'] = newTimestamp;
 
-      await ref
-          .watch(dbProvider)
-          .casesCollection
-          .add(CaseModelX.fromJson(caseModelJson));
+      // await ref
+      //     .watch(dbProvider)
+      //     .casesCollection
+      //     .add(CaseModelX.fromJson(caseModelJson));
 
       return newCaseID;
     } catch (err) {

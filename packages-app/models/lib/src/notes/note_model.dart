@@ -64,8 +64,10 @@ extension NoteModelX on NoteModel {
 }
 
 extension QuillDocumentNoteExt on quill.Document {
-  String get toJsonString {
-    // ignore: unnecessary_this
-    return json.encode(this.toDelta().toJson());
+  String? get toJsonString {
+    // for form can pop as the empty document.delta is not null
+    if (isEmpty()) return null;
+    // if not empty
+    return json.encode(toDelta().toJson());
   }
 }

@@ -6,8 +6,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:models/models.dart';
 import 'package:ui/ui.dart';
 
-import '../../../case_details/case_details.dart';
-import '../../../cases/cases.dart';
+import '../../case_details/case_details.dart';
+import '../../cases/cases.dart';
 
 class CasesSearchResultTile extends ConsumerWidget {
   const CasesSearchResultTile({
@@ -18,11 +18,6 @@ class CasesSearchResultTile extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    /// Footer for the tile that has partial name in it
-    // final footer = _DecryptedPatientModel(
-    //   caseModel: caseModel,
-    // );
-
     /// Main tile content that has  surgery info bar and  surgery tile
     final Widget tile = SizedBox(
       height: kToolbarHeight * 1.5,
@@ -50,10 +45,6 @@ class CasesSearchResultTile extends ConsumerWidget {
               ),
             ),
           ),
-          // SizedBox(
-          //   height: kToolbarHeight * 0.5,
-          //   child: footer,
-          // )
         ],
       ),
     );

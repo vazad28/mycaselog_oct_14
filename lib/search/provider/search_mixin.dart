@@ -1,31 +1,28 @@
+import 'package:annotations/annotations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:models/models.dart';
 import 'package:realm/realm.dart';
 
-import '../../app/app.dart';
+import 'search_provider.dart';
 
 mixin SearchMixin {
-  /// Full text search cases
-  RealmResults<CaseModel> searchCases(WidgetRef ref, String searchTerm) {
-    return ref.watch(dbProvider).casesCollection.search(searchTerm);
+  SearchType watchSearchType(WidgetRef ref) =>
+      ref.watch(searchNotifierProvider);
+
+  void updateSearchType(WidgetRef ref, SearchType searchType) {
+    ref.watch(searchNotifierProvider.notifier).update(searchType);
   }
 
-  /// Full text search notes
-  RealmResults<MediaModel> searchMedia(WidgetRef ref, String searchTerm) {
-    final caseResults =
-        ref.watch(dbProvider).casesCollection.search(searchTerm);
-
-    // list of case IDs matching the search term
-    final ids = caseResults.map((e) => e.caseID);
-
-    return ref.watch(dbProvider).mediaCollection.search(ids);
+  SearchType createSearchType<T>() {
+    return switch (T) {
+      CaseModel => SearchType.cases,
+      MediaModel => SearchType.media,
+      NoteModel => SearchType.notes,
+      Type() => throw UnimplementedError(),
+    };
   }
 
-  /// Full text search notes
-  RealmResults<NoteModel> searchNotes(
-    WidgetRef ref,
-    String searchTerm,
-  ) {
-    return ref.watch(dbProvider).notesCollection.search(searchTerm);
+  RealmResults<RealmObject> doSearch(WidgetRef ref, String searchTerm) {
+    return ref.watch(searchNotifierProvider.notifier).doSearch(searchTerm);
   }
 }

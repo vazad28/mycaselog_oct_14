@@ -1,42 +1,49 @@
-part of 'search_view.dart';
+part of 'search_page.dart';
 
-class ResultsView<T> extends StatelessWidget {
-  const ResultsView(
-    this.searchResultWidgets, {
+class SearchResultsView extends ConsumerWidget with SearchMixin {
+  const SearchResultsView({
+    required this.searchResults,
     required this.searchType,
     super.key,
   });
 
-  final Iterable<Widget> searchResultWidgets;
+  final RealmResults<RealmObject>? searchResults;
   final SearchType searchType;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    if (searchResults?.isEmpty ?? true) {
+      return const Loading(text: 'No results');
+    }
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        _buildResultsCount(context),
+        _buildResultsCount(context, searchResults!),
         Divider(
           height: 1,
-          color: context.colorScheme.onSurface.lighter(0.8),
+          color: context.colorScheme.onSurface.lighter(),
         ),
         Expanded(
           child: searchType == SearchType.cases
-              ? _buildResultsList()
-              : _buildResultsGrid(),
+              ? _buildResultsList(searchResults!)
+              : _buildResultsGrid(searchResults!),
         ),
       ],
     );
   }
 
-  Widget _buildResultsCount(BuildContext context) {
+  Widget _buildResultsCount(
+    BuildContext context,
+    RealmResults<RealmObject> searchResults,
+  ) {
     return SizedBox(
       height: kToolbarHeight * 0.5,
       child: Row(
         children: [
           const SizedBox(width: AppSpacing.md),
           Text(
-            '${searchResultWidgets.length} RESULTS',
+            '${searchResults.length} RESULTS',
             style: context.textTheme.bodyMedium?.lighter(),
             textAlign: TextAlign.start,
           ),
@@ -45,15 +52,21 @@ class ResultsView<T> extends StatelessWidget {
     );
   }
 
-  Widget _buildResultsList() {
+  Widget _buildResultsList(RealmResults<RealmObject> searchResults) {
     return ListView.builder(
       padding: EdgeInsets.zero,
-      itemBuilder: (context, index) => searchResultWidgets.elementAt(index),
-      itemCount: searchResultWidgets.length,
+      itemBuilder: (context, index) {
+        final model = searchResults.elementAt(index) as CaseModel;
+        return CasesSearchResultTile(
+          caseModel: model,
+          key: Key('__CasesSearchResultTile_${model.caseID}_key__'),
+        );
+      },
+      itemCount: searchResults.length,
     );
   }
 
-  Widget _buildResultsGrid() {
+  Widget _buildResultsGrid(RealmResults<RealmObject> searchResults) {
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
         final widgetKey = constraints.maxWidth <= Breakpoints.mobile
@@ -64,14 +77,20 @@ class ResultsView<T> extends StatelessWidget {
 
         return GridView.builder(
           key: widgetKey,
-          itemCount: searchResultWidgets.length,
+          itemCount: searchResults.length,
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: crossAxisCount,
             mainAxisSpacing: AppSpacing.xs,
             crossAxisSpacing: AppSpacing.xs,
           ),
           itemBuilder: (context, int index) {
-            return searchResultWidgets.elementAt(index);
+            final model = searchResults.elementAt(index) as MediaModel;
+            return MediaSearchResultTile(
+              mediaModel: model,
+              key: Key('__MediaSearchResultTile_${model.mediaID}_key__'),
+              results: searchResults as RealmResults<MediaModel>,
+              width: 90,
+            );
           },
         );
       },

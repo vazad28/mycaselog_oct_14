@@ -3,10 +3,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:l10n/l10n.dart';
+import 'package:models/models.dart';
 import 'package:ui/ui.dart';
 
 import '../../app/app.dart';
 import '../../search/search.dart';
+import '../../search/view/search_page.dart';
 import '../media.dart';
 
 class MediaPage extends ConsumerStatefulWidget {
@@ -43,9 +45,9 @@ class _MediaPageState extends ConsumerState<MediaPage> {
         ),
         slivers: [
           const MediaAppBar(),
-          const CaseMediaSearchBar(
-            searchType: SearchType.media,
-          ),
+          const SearchPage<MediaModel>(
+              //searchType: SearchType.media,
+              ),
           CupertinoSliverRefreshControl(
             builder: customScrollViewRefreshIndicator,
             refreshTriggerPullDistance: AppConst.kRefreshTriggerPullDistance,

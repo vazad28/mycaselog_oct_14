@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:developer' as developer;
 import 'dart:isolate';
 
-//import 'package:firebase_crashlytics/firebase_crashlytics.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_logger_plus/flutter_logger_plus.dart';
 import 'package:utils/utils.dart';
@@ -33,11 +33,11 @@ class _ErrorTracker {
       Isolate.current.addErrorListener(
         RawReceivePort((List<dynamic> pair) async {
           final errorAndStacktrace = pair;
-          // await FirebaseCrashlytics.instance.recordError(
-          //   errorAndStacktrace.first,
-          //   errorAndStacktrace.last as StackTrace?,
-          //   fatal: true,
-          //);
+          await FirebaseCrashlytics.instance.recordError(
+            errorAndStacktrace.first,
+            errorAndStacktrace.last as StackTrace?,
+            fatal: true,
+          );
           // ignore: use_build_context_synchronously
           restartUtils.silentRestart(AppVars.rootContext);
         }).sendPort,
@@ -46,7 +46,7 @@ class _ErrorTracker {
       // Pass all uncaught asynchronous errors that aren't handled by the
       // Flutter framework to Crashlytics
       PlatformDispatcher.instance.onError = (error, stack) {
-        //FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
+        FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
         return true;
       };
     } catch (e) {
@@ -54,18 +54,18 @@ class _ErrorTracker {
     }
   }
 
-  // Future<void> captureError(
-  //   Object error,
-  //   StackTrace? stackTrace, {
-  //   dynamic hint,
-  // }) async {
-  //   await Future.wait([
-  //     if (error is FlutterErrorDetails)
-  //       FirebaseCrashlytics.instance.recordFlutterFatalError(error),
-  //     //Sentry.captureException(error, stackTrace: stackTrace, hint: hint),
-  //   ]);
-  //   logger.success('SUCCESS capture error');
-  // }
+  Future<void> captureError(
+    Object error,
+    StackTrace? stackTrace, {
+    dynamic hint,
+  }) async {
+    await Future.wait([
+      if (error is FlutterErrorDetails)
+        FirebaseCrashlytics.instance.recordFlutterFatalError(error),
+      //Sentry.captureException(error, stackTrace: stackTrace, hint: hint),
+    ]);
+    logger.success('SUCCESS capture error');
+  }
 
   // Future<void> addBreadCrumb(
   //   String message, {

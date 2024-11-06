@@ -46,7 +46,8 @@ class _CasesPageState extends ConsumerState<CasesPage> with AppMixins {
         ),
         slivers: [
           const CasesAppBar(),
-          const CaseMediaSearchBar(searchType: SearchType.cases),
+          const CasesSearchBar(),
+          //const CaseMediaSearchBar(searchType: SearchType.cases),
           CupertinoSliverRefreshControl(
             builder: customScrollViewRefreshIndicator,
             refreshTriggerPullDistance: AppConst.kRefreshTriggerPullDistance,

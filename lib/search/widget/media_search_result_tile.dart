@@ -5,8 +5,8 @@ import 'package:models/models.dart';
 import 'package:realm/realm.dart';
 import 'package:ui/ui.dart';
 
-import '../../../media_gallery/media_gallery.dart';
-import '../../../router/router.dart';
+import '../../media_gallery/media_gallery.dart';
+import '../../router/router.dart';
 
 class MediaSearchResultTile extends ConsumerWidget {
   const MediaSearchResultTile({

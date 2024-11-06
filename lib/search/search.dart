@@ -1,4 +1,4 @@
-export './case_media_search/case_media_search.dart';
-export './case_media_search/case_media_search_bar.dart';
 export './provider/search_mixin.dart';
-export './view/search_view.dart';
+export './provider/search_provider.dart';
+export './view/search_page.dart';
+export './widget/widgets.dart';

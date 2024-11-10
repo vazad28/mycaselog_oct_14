@@ -1,4 +1,5 @@
 import 'package:annotations/annotations.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:models/models.dart';
 import 'package:realm/realm.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -6,6 +7,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../../app/app.dart';
 
 part '../../generated/search/provider/search_provider.g.dart';
+part './search_mixin.dart';
 
 //@Riverpod(keepAlive: true)
 @riverpod

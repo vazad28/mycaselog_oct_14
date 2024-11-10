@@ -1,11 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:models/models.dart';
-import 'package:ui/ui.dart';
-
-import '../../search/search.dart';
-import '../provider/media_provider.dart';
-import '../widget/media_tile_style_toggle.dart';
+part of '../view/media_page.dart';
 
 class MediaSearchBar extends ConsumerWidget with SearchMixin {
   const MediaSearchBar({super.key});
@@ -22,18 +15,38 @@ class MediaSearchBar extends ConsumerWidget with SearchMixin {
       surfaceTintColor: context.colorScheme.surface,
       titleSpacing: AppSpacing.md,
       title: const SearchPage<MediaModel>(
-        trailingWidgets: [_MediaCountWidget()],
+        trailingWidgets: [
+          _MediaCountWidget(),
+        ],
       ),
       actions: const [
-        MediaTileStyleToggle(),
+        _MediaTileStyleWidget(),
         SizedBox(width: AppSpacing.sm),
       ],
     );
   }
 }
 
+class _MediaTileStyleWidget extends ConsumerWidget {
+  const _MediaTileStyleWidget();
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final style = ref.watch(mediaGridTileStyleProvider);
+
+    // ignore: require_trailing_commas
+    return IconButton(
+      onPressed: () {
+        final toggledStyle = style == 1 ? 0 : 1;
+        ref.watch(mediaGridTileStyleProvider.notifier).update(toggledStyle);
+      },
+      icon:
+          style == 0 ? const Icon(Icons.grid_on) : const Icon(Icons.grid_view),
+    );
+  }
+}
+
 class _MediaCountWidget extends ConsumerWidget {
-  const _MediaCountWidget({super.key});
+  const _MediaCountWidget();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

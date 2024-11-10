@@ -1,18 +1,16 @@
+import 'package:animations/animations.dart';
 import 'package:annotations/annotations.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:models/models.dart';
 import 'package:realm/realm.dart';
 import 'package:ui/ui.dart';
-import 'package:utils/utils.dart';
 
 import '../../app/app.dart';
-import '../../app/services/services.dart';
 import '../search.dart';
-import 'suggestion_view.dart';
 
 part './search_results_view.dart';
+part './suggestion_view.dart';
 
 class SearchPage<T> extends ConsumerStatefulWidget {
   const SearchPage({
@@ -106,40 +104,47 @@ class _SearchPageState<T> extends ConsumerState<SearchPage<T>>
       },
       searchController: _searchController,
       viewBuilder: (suggestions) {
-        if (_showResults) {
-          return SearchResultsView(
-            searchResults: _searchResults,
-            searchType: watchSearchType(ref),
-          );
-        } else {
-          return SuggestionsView(
-            searchController: _searchController,
-            onTap: (value) {
-              _currentSearchTerm = value.trim();
-              handleSelection();
-            },
-          );
-        }
+        return PageTransitionSwitcher(
+          reverse: !_showResults,
+          transitionBuilder: (
+            Widget child,
+            Animation<double> animation,
+            Animation<double> secondaryAnimation,
+          ) {
+            return SharedAxisTransition(
+              animation: animation,
+              secondaryAnimation: secondaryAnimation,
+              transitionType: SharedAxisTransitionType.horizontal,
+              child: child,
+            );
+          },
+          child: _showResults
+              ? SearchResultsView(
+                  searchResults: _searchResults,
+                  searchType: watchSearchType(ref),
+                )
+              : SuggestionsView(
+                  searchController: _searchController,
+                  onTap: (value) {
+                    _currentSearchTerm = value.trim();
+                    handleSelection();
+                  },
+                ),
+        );
       },
       suggestionsBuilder: (context, controller) {
         return [];
       },
     );
 
-    return PopScope(
-      child: searchAnchor,
-      onPopInvokedWithResult: (didPop, result) {
-        showBottomNavbar(ref);
-      },
-    );
+    return searchAnchor;
   }
 
   void handleSelection() {
     setState(() {
       if (_currentSearchTerm == null) return;
       try {
-        _searchController.text =
-            ''; //<- important to trigger suggestion builder
+        _searchController.text = ''; //<- *** to trigger suggestion builder
         _searchResults = ref
             .watch(searchNotifierProvider.notifier)
             .doSearch(_currentSearchTerm!);

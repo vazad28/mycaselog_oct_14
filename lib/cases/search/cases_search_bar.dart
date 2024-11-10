@@ -20,20 +20,11 @@ class CasesSearchBar extends ConsumerWidget {
       shadowColor: context.colorScheme.shadow.lighter(),
       surfaceTintColor: context.colorScheme.surface,
       titleSpacing: AppSpacing.md,
-      title:
-          // IconButton(
-          //     onPressed: () {
-          //       context.openModalPage<void>(child: const SearchPage<CaseModel>());
-          //     },
-          //     icon: Icon(Icons.search)),
-          SearchPage<CaseModel>(
-              // anchorStyle: SearchBarStyle.bar,
-              // onSearch: (searchTerm) {
-              //   return ref
-              //       .watch(casesNotifierProvider.notifier)
-              //       .searchCases(searchTerm);
-              //},
-              ),
+      title: const SearchPage<CaseModel>(
+        trailingWidgets: [
+          _CasesCountWidget(),
+        ],
+      ),
       actions: const [
         _CaseTileStyleWidget(),
         SizedBox(width: AppSpacing.sm),
@@ -43,7 +34,7 @@ class CasesSearchBar extends ConsumerWidget {
 }
 
 class _CaseTileStyleWidget extends ConsumerWidget {
-  const _CaseTileStyleWidget({super.key});
+  const _CaseTileStyleWidget();
 
   static const _tileDisplayIcons = [
     Icon(Icons.format_list_bulleted),
@@ -61,6 +52,24 @@ class _CaseTileStyleWidget extends ConsumerWidget {
         ref.watch(caseTileStyleProvider.notifier).update(toggledStyle);
       },
       icon: _tileDisplayIcons[caseTileStyle],
+    );
+  }
+}
+
+class _CasesCountWidget extends ConsumerWidget {
+  const _CasesCountWidget();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    return AsyncValueWidget(
+      value: ref.watch(casesNotifierProvider),
+      data: (data) => Padding(
+        padding: const EdgeInsets.only(right: AppSpacing.sm),
+        child: Text(
+          data.results.length.toString(),
+          style: Theme.of(context).textTheme.titleMedium,
+        ),
+      ),
     );
   }
 }

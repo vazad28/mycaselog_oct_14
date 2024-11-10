@@ -1,8 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:ui/ui.dart';
-
-import '../provider/search_provider.dart';
+part of 'search_page.dart';
 
 class SuggestionsView extends ConsumerWidget {
   const SuggestionsView({
@@ -22,58 +18,13 @@ class SuggestionsView extends ConsumerWidget {
 
     return result.map(
       (String suggestion) => InkResponse(
-        child: Row(
-          children: [
-            const HorizontalSpacer.small(),
-            const Icon(Icons.arrow_right),
-            const HorizontalSpacer.small(),
-            Expanded(
-              child: Text(
-                suggestion,
-                style: Theme.of(context).textTheme.bodyLarge,
-              ),
-            ),
-            IconButton(
-              icon: const Icon(Icons.call_missed),
-              onPressed: () {
-                searchController
-                  ..text = suggestion
-                  ..selection = TextSelection.collapsed(
-                    offset: searchController.text.length,
-                  );
-              },
-            ),
-            const HorizontalSpacer.xsmall(),
-          ],
+        child: _SuggestionTile(
+          suggestion: suggestion,
+          searchController: searchController,
         ),
         onTap: () => onTap(suggestion),
       ),
     );
-
-    // return result.map(
-    //   (String suggestion) =>
-    //   ListTile(
-    //     dense: true,
-    //     leading: const Icon(Icons.history),
-    //     title: Text(
-    //       suggestion,
-    //       //style: Theme.of(context).textTheme.bodyLarge,
-    //     ),
-    //     trailing: IconButton(
-    //       icon: const Icon(Icons.call_missed),
-    //       onPressed: () {
-    //         searchController
-    //           ..text = suggestion
-    //           ..selection = TextSelection.collapsed(
-    //             offset: searchController.text.length,
-    //           );
-    //       },
-    //     ),
-    //     onTap: () {
-    //       _handleSelection(suggestion);
-    //     },
-    //   ),
-    // );
   }
 
   @override
@@ -95,17 +46,12 @@ class SuggestionsView extends ConsumerWidget {
       itemCount: children.length,
     );
   }
-
-  void _handleSelection(String suggestion) {
-    searchController.text = suggestion;
-  }
 }
 
-class SuggestionTile extends ConsumerWidget {
-  const SuggestionTile({
+class _SuggestionTile extends ConsumerWidget {
+  const _SuggestionTile({
     required this.suggestion,
     required this.searchController,
-    super.key,
   });
 
   final String suggestion;
@@ -113,26 +59,29 @@ class SuggestionTile extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return ListTile(
-      dense: true,
-      leading: const Icon(Icons.history),
-      title: Text(
-        suggestion,
-        //style: Theme.of(context).textTheme.bodyLarge,
-      ),
-      trailing: IconButton(
-        icon: const Icon(Icons.call_missed),
-        onPressed: () {
-          searchController
-            ..text = suggestion
-            ..selection = TextSelection.collapsed(
-              offset: searchController.text.length,
-            );
-        },
-      ),
-      onTap: () {
-        searchController.text = suggestion;
-      },
+    return Row(
+      children: [
+        const HorizontalSpacer.small(),
+        const Icon(Icons.arrow_right),
+        const HorizontalSpacer.small(),
+        Expanded(
+          child: Text(
+            suggestion,
+            style: Theme.of(context).textTheme.bodyLarge,
+          ),
+        ),
+        IconButton(
+          icon: const Icon(Icons.call_missed),
+          onPressed: () {
+            searchController
+              ..text = suggestion
+              ..selection = TextSelection.collapsed(
+                offset: searchController.text.length,
+              );
+          },
+        ),
+        const HorizontalSpacer.xsmall(),
+      ],
     );
   }
 }

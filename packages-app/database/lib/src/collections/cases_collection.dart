@@ -128,4 +128,19 @@ class CasesCollection extends RealmCollection<CaseModel>
     final cases = realm.query<CaseModel>('TRUEPREDICATE SORT(surgeryDate ASC)');
     return cases.isEmpty ? null : cases.first.surgeryDate;
   }
+
+  ///Search Stats
+  Iterable<CaseModel> searchStatsPhrase(List<String> searchTerms) {
+    return realm
+        .all<CaseModel>()
+        .where((caseModel) {
+          return searchTerms.any(
+            (term) =>
+                caseModel.surgery?.toLowerCase().contains(term.toLowerCase()) ??
+                false,
+          );
+        })
+        .where((e) => e.removed == 0)
+        .sorted((a, b) => b.timestamp.compareTo(a.timestamp));
+  }
 }

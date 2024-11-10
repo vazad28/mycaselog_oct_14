@@ -60,29 +60,28 @@ class ChartReqModel {
   final DateTime? toStamp;
 
   ChartReqModel copyWith({
+    required String? searchTerm, //-> important
+    required int? currMonth, //-> important
     int? activeTab,
     ChartDataModel? chartData,
     ChartTypes? chartType,
-    int? currMonth,
     int? currYear,
     String? filterClause,
     DateTime? fromStamp,
     StatsGroupBy? groupByLabel,
-    String? searchTerm,
     DateTime? toStamp,
   }) =>
       ChartReqModel(
         activeTab: activeTab ?? this.activeTab,
         chartData: chartData ?? this.chartData,
         chartType: chartType ?? this.chartType,
-
-        /// dont set this.currMonth or this.searchTerm else
-        /// these will never be set to null
+        // DONOT set this.currMonth or it will never be set to null
         currMonth: currMonth,
         currYear: currYear ?? this.currYear,
         filterClause: filterClause,
         fromStamp: fromStamp ?? this.fromStamp,
         groupByLabel: groupByLabel ?? this.groupByLabel,
+        //  DONOT set to this.searchTerm or it will never be set to null
         searchTerm: searchTerm,
         toStamp: toStamp ?? this.toStamp,
       );

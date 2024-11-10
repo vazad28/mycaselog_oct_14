@@ -1,9 +1,4 @@
-import 'package:annotations/annotations.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:models/models.dart';
-import 'package:realm/realm.dart';
-
-import 'search_provider.dart';
+part of 'search_provider.dart';
 
 mixin SearchMixin {
   SearchType watchSearchType(WidgetRef ref) =>

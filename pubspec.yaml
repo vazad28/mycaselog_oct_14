@@ -78,6 +78,7 @@ dependencies:
   collection: ^1.19.0
   easy_image_viewer: ^1.5.1
   local_auth: ^2.3.0
+  fl_chart: ^0.69.0
 
 dependency_overrides:
   #custom_lint: 0.6.10

@@ -16,12 +16,14 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$AppException {
+  Object? get message => throw _privateConstructorUsedError;
+
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String error)? generic,
-    TResult Function(Object error)? fromError,
-    TResult Function()? fileNotFound,
-    TResult Function()? nullValue,
+    TResult Function(Object? message)? generic,
+    TResult Function(Object? message)? fromError,
+    TResult Function(Object? message)? fileNotFound,
+    TResult Function(Object? message)? nullValue,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -33,6 +35,12 @@ mixin _$AppException {
     required TResult Function(NullValueException value) nullValue,
   }) =>
       throw _privateConstructorUsedError;
+
+  /// Create a copy of AppException
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $AppExceptionCopyWith<AppException> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -40,6 +48,8 @@ abstract class $AppExceptionCopyWith<$Res> {
   factory $AppExceptionCopyWith(
           AppException value, $Res Function(AppException) then) =
       _$AppExceptionCopyWithImpl<$Res, AppException>;
+  @useResult
+  $Res call({Object? message});
 }
 
 /// @nodoc
@@ -54,15 +64,26 @@ class _$AppExceptionCopyWithImpl<$Res, $Val extends AppException>
 
   /// Create a copy of AppException
   /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? message = freezed,
+  }) {
+    return _then(_value.copyWith(
+      message: freezed == message ? _value.message : message,
+    ) as $Val);
+  }
 }
 
 /// @nodoc
-abstract class _$$GenericAppExceptionImplCopyWith<$Res> {
+abstract class _$$GenericAppExceptionImplCopyWith<$Res>
+    implements $AppExceptionCopyWith<$Res> {
   factory _$$GenericAppExceptionImplCopyWith(_$GenericAppExceptionImpl value,
           $Res Function(_$GenericAppExceptionImpl) then) =
       __$$GenericAppExceptionImplCopyWithImpl<$Res>;
+  @override
   @useResult
-  $Res call({String error});
+  $Res call({Object? message});
 }
 
 /// @nodoc
@@ -78,13 +99,10 @@ class __$$GenericAppExceptionImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? error = null,
+    Object? message = freezed,
   }) {
     return _then(_$GenericAppExceptionImpl(
-      null == error
-          ? _value.error
-          : error // ignore: cast_nullable_to_non_nullable
-              as String,
+      freezed == message ? _value.message : message,
     ));
   }
 }
@@ -92,14 +110,14 @@ class __$$GenericAppExceptionImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$GenericAppExceptionImpl extends GenericAppException {
-  const _$GenericAppExceptionImpl(this.error) : super._();
+  const _$GenericAppExceptionImpl([this.message]) : super._();
 
   @override
-  final String error;
+  final Object? message;
 
   @override
   String toString() {
-    return 'AppException.generic(error: $error)';
+    return 'AppException.generic(message: $message)';
   }
 
   @override
@@ -107,11 +125,12 @@ class _$GenericAppExceptionImpl extends GenericAppException {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$GenericAppExceptionImpl &&
-            (identical(other.error, error) || other.error == error));
+            const DeepCollectionEquality().equals(other.message, message));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, error);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(message));
 
   /// Create a copy of AppException
   /// with the given fields replaced by the non-null parameter values.
@@ -125,14 +144,14 @@ class _$GenericAppExceptionImpl extends GenericAppException {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String error)? generic,
-    TResult Function(Object error)? fromError,
-    TResult Function()? fileNotFound,
-    TResult Function()? nullValue,
+    TResult Function(Object? message)? generic,
+    TResult Function(Object? message)? fromError,
+    TResult Function(Object? message)? fileNotFound,
+    TResult Function(Object? message)? nullValue,
     required TResult orElse(),
   }) {
     if (generic != null) {
-      return generic(error);
+      return generic(message);
     }
     return orElse();
   }
@@ -150,27 +169,31 @@ class _$GenericAppExceptionImpl extends GenericAppException {
 }
 
 abstract class GenericAppException extends AppException {
-  const factory GenericAppException(final String error) =
+  const factory GenericAppException([final Object? message]) =
       _$GenericAppExceptionImpl;
   const GenericAppException._() : super._();
 
-  String get error;
+  @override
+  Object? get message;
 
   /// Create a copy of AppException
   /// with the given fields replaced by the non-null parameter values.
+  @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$GenericAppExceptionImplCopyWith<_$GenericAppExceptionImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$FromErrorAppExceptionImplCopyWith<$Res> {
+abstract class _$$FromErrorAppExceptionImplCopyWith<$Res>
+    implements $AppExceptionCopyWith<$Res> {
   factory _$$FromErrorAppExceptionImplCopyWith(
           _$FromErrorAppExceptionImpl value,
           $Res Function(_$FromErrorAppExceptionImpl) then) =
       __$$FromErrorAppExceptionImplCopyWithImpl<$Res>;
+  @override
   @useResult
-  $Res call({Object error});
+  $Res call({Object? message});
 }
 
 /// @nodoc
@@ -186,10 +209,10 @@ class __$$FromErrorAppExceptionImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? error = null,
+    Object? message = freezed,
   }) {
     return _then(_$FromErrorAppExceptionImpl(
-      null == error ? _value.error : error,
+      freezed == message ? _value.message : message,
     ));
   }
 }
@@ -197,14 +220,14 @@ class __$$FromErrorAppExceptionImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$FromErrorAppExceptionImpl extends FromErrorAppException {
-  const _$FromErrorAppExceptionImpl(this.error) : super._();
+  const _$FromErrorAppExceptionImpl([this.message]) : super._();
 
   @override
-  final Object error;
+  final Object? message;
 
   @override
   String toString() {
-    return 'AppException.fromError(error: $error)';
+    return 'AppException.fromError(message: $message)';
   }
 
   @override
@@ -212,12 +235,12 @@ class _$FromErrorAppExceptionImpl extends FromErrorAppException {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$FromErrorAppExceptionImpl &&
-            const DeepCollectionEquality().equals(other.error, error));
+            const DeepCollectionEquality().equals(other.message, message));
   }
 
   @override
   int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(error));
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(message));
 
   /// Create a copy of AppException
   /// with the given fields replaced by the non-null parameter values.
@@ -231,14 +254,14 @@ class _$FromErrorAppExceptionImpl extends FromErrorAppException {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String error)? generic,
-    TResult Function(Object error)? fromError,
-    TResult Function()? fileNotFound,
-    TResult Function()? nullValue,
+    TResult Function(Object? message)? generic,
+    TResult Function(Object? message)? fromError,
+    TResult Function(Object? message)? fileNotFound,
+    TResult Function(Object? message)? nullValue,
     required TResult orElse(),
   }) {
     if (fromError != null) {
-      return fromError(error);
+      return fromError(message);
     }
     return orElse();
   }
@@ -256,25 +279,31 @@ class _$FromErrorAppExceptionImpl extends FromErrorAppException {
 }
 
 abstract class FromErrorAppException extends AppException {
-  const factory FromErrorAppException(final Object error) =
+  const factory FromErrorAppException([final Object? message]) =
       _$FromErrorAppExceptionImpl;
   const FromErrorAppException._() : super._();
 
-  Object get error;
+  @override
+  Object? get message;
 
   /// Create a copy of AppException
   /// with the given fields replaced by the non-null parameter values.
+  @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$FromErrorAppExceptionImplCopyWith<_$FromErrorAppExceptionImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$FileNotFoundExceptionImplCopyWith<$Res> {
+abstract class _$$FileNotFoundExceptionImplCopyWith<$Res>
+    implements $AppExceptionCopyWith<$Res> {
   factory _$$FileNotFoundExceptionImplCopyWith(
           _$FileNotFoundExceptionImpl value,
           $Res Function(_$FileNotFoundExceptionImpl) then) =
       __$$FileNotFoundExceptionImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({Object? message});
 }
 
 /// @nodoc
@@ -287,39 +316,62 @@ class __$$FileNotFoundExceptionImplCopyWithImpl<$Res>
 
   /// Create a copy of AppException
   /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? message = freezed,
+  }) {
+    return _then(_$FileNotFoundExceptionImpl(
+      freezed == message ? _value.message : message,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$FileNotFoundExceptionImpl extends FileNotFoundException {
-  const _$FileNotFoundExceptionImpl() : super._();
+  const _$FileNotFoundExceptionImpl([this.message]) : super._();
+
+  @override
+  final Object? message;
 
   @override
   String toString() {
-    return 'AppException.fileNotFound()';
+    return 'AppException.fileNotFound(message: $message)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$FileNotFoundExceptionImpl);
+            other is _$FileNotFoundExceptionImpl &&
+            const DeepCollectionEquality().equals(other.message, message));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(message));
+
+  /// Create a copy of AppException
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$FileNotFoundExceptionImplCopyWith<_$FileNotFoundExceptionImpl>
+      get copyWith => __$$FileNotFoundExceptionImplCopyWithImpl<
+          _$FileNotFoundExceptionImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String error)? generic,
-    TResult Function(Object error)? fromError,
-    TResult Function()? fileNotFound,
-    TResult Function()? nullValue,
+    TResult Function(Object? message)? generic,
+    TResult Function(Object? message)? fromError,
+    TResult Function(Object? message)? fileNotFound,
+    TResult Function(Object? message)? nullValue,
     required TResult orElse(),
   }) {
     if (fileNotFound != null) {
-      return fileNotFound();
+      return fileNotFound(message);
     }
     return orElse();
   }
@@ -337,15 +389,30 @@ class _$FileNotFoundExceptionImpl extends FileNotFoundException {
 }
 
 abstract class FileNotFoundException extends AppException {
-  const factory FileNotFoundException() = _$FileNotFoundExceptionImpl;
+  const factory FileNotFoundException([final Object? message]) =
+      _$FileNotFoundExceptionImpl;
   const FileNotFoundException._() : super._();
+
+  @override
+  Object? get message;
+
+  /// Create a copy of AppException
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$FileNotFoundExceptionImplCopyWith<_$FileNotFoundExceptionImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$NullValueExceptionImplCopyWith<$Res> {
+abstract class _$$NullValueExceptionImplCopyWith<$Res>
+    implements $AppExceptionCopyWith<$Res> {
   factory _$$NullValueExceptionImplCopyWith(_$NullValueExceptionImpl value,
           $Res Function(_$NullValueExceptionImpl) then) =
       __$$NullValueExceptionImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({Object? message});
 }
 
 /// @nodoc
@@ -358,38 +425,62 @@ class __$$NullValueExceptionImplCopyWithImpl<$Res>
 
   /// Create a copy of AppException
   /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? message = freezed,
+  }) {
+    return _then(_$NullValueExceptionImpl(
+      freezed == message ? _value.message : message,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$NullValueExceptionImpl extends NullValueException {
-  const _$NullValueExceptionImpl() : super._();
+  const _$NullValueExceptionImpl([this.message]) : super._();
+
+  @override
+  final Object? message;
 
   @override
   String toString() {
-    return 'AppException.nullValue()';
+    return 'AppException.nullValue(message: $message)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$NullValueExceptionImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$NullValueExceptionImpl &&
+            const DeepCollectionEquality().equals(other.message, message));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(message));
+
+  /// Create a copy of AppException
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$NullValueExceptionImplCopyWith<_$NullValueExceptionImpl> get copyWith =>
+      __$$NullValueExceptionImplCopyWithImpl<_$NullValueExceptionImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String error)? generic,
-    TResult Function(Object error)? fromError,
-    TResult Function()? fileNotFound,
-    TResult Function()? nullValue,
+    TResult Function(Object? message)? generic,
+    TResult Function(Object? message)? fromError,
+    TResult Function(Object? message)? fileNotFound,
+    TResult Function(Object? message)? nullValue,
     required TResult orElse(),
   }) {
     if (nullValue != null) {
-      return nullValue();
+      return nullValue(message);
     }
     return orElse();
   }
@@ -407,6 +498,17 @@ class _$NullValueExceptionImpl extends NullValueException {
 }
 
 abstract class NullValueException extends AppException {
-  const factory NullValueException() = _$NullValueExceptionImpl;
+  const factory NullValueException([final Object? message]) =
+      _$NullValueExceptionImpl;
   const NullValueException._() : super._();
+
+  @override
+  Object? get message;
+
+  /// Create a copy of AppException
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$NullValueExceptionImplCopyWith<_$NullValueExceptionImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

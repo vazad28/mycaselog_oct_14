@@ -2,6 +2,7 @@ import 'dart:io' show File;
 
 import 'package:annotations/annotations.dart';
 import 'package:authentication_client/authentication_client.dart';
+import 'package:collection/collection.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:models/models.dart';
 import 'package:realm/realm.dart';

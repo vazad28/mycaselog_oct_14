@@ -5,12 +5,16 @@ Future<RealmDatabase> realmDatabase(Ref ref) async {
   final userFuture = ref.watch(authenticationUserStreamProvider.future);
 
   final user = await userFuture;
-
   if (user.isAnonymous) ref.invalidateSelf();
 
+  /// db error stream controller instance
   final databaseErrorCtrl = ref.watch(databaseErrorControllerProvider);
 
-  final realmDb = await RealmDatabase.init(user, databaseErrorCtrl);
+  /// instance of secureStorage for keeping enck key for database
+  final secureStorage = ref.watch(secureStorageProvider);
+
+  final realmDb =
+      await RealmDatabase.init(user, secureStorage, databaseErrorCtrl);
 
   ref.onDispose(realmDb.realm.close);
 

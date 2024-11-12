@@ -2,7 +2,7 @@ part of 'services.dart';
 
 /// Riverpod provider to use the dialog service
 @riverpod
-LocalStorage localStorage(LocalStorageRef ref) {
+LocalStorage localStorage(Ref ref) {
   final persistentStorage = ref.watch(persistentStorageProvider);
 
   return LocalStorage(persistentStorage: persistentStorage);
@@ -135,6 +135,4 @@ class LocalStorage {
       caseMediaRecentSearches,
     );
   }
-
-  void setRecentSearches<T>(List<String> searchHistory) {}
 }

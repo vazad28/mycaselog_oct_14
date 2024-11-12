@@ -17,6 +17,8 @@ dependencies:
     path: ../../packages/authentication_client/authentication_client
   annotations:
     path: ../annotations
+  storage:
+    path: ../../packages/storage
   cloud_firestore: ^5.4.4
   shared_preferences: ^2.3.2
   flutter_logger_plus: ^5.0.0

@@ -1,7 +1,7 @@
 part of 'providers.dart';
 
 @riverpod
-Future<void> appStartUp(AppStartUpRef ref) async {
+Future<void> appStartUp(Ref ref) async {
   /// Load realm database
   await ref.watch(realmDatabaseProvider.future);
 

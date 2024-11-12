@@ -55,12 +55,13 @@ class _ChartTimerController extends ConsumerState<ChartTimer> {
   }
 
   void _animateMonth(int index, double offset) {
-    final distance = (index - 1) * offset;
+    final distance = index > 6 ? index * offset : -1 * index * offset;
+
     if (_monthsController.hasClients) {
       _monthsController.animateTo(
-        distance,
-        curve: Curves.ease,
-        duration: const Duration(milliseconds: 300),
+        distance * 0.5,
+        curve: Curves.easeInOut,
+        duration: const Duration(milliseconds: 900),
       );
     }
   }

@@ -5,8 +5,10 @@ import 'package:flutter/foundation.dart';
 import 'package:models/models.dart';
 import 'package:realm/realm.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:storage/storage.dart';
 
 import '../../database.dart';
+import 'secure_key_generator.dart';
 
 class RealmDatabase {
   final Realm realm;
@@ -27,10 +29,38 @@ class RealmDatabase {
 
   static Future<RealmDatabase> init(
     AuthenticationUser user,
+    SecureStorage secureStorage,
     StreamController<DbException> databaseErrorStream,
   ) async {
     final sharedPrefs = await SharedPreferences.getInstance();
-    final realm = await _createRealm(user);
+
+    if (user.isAnonymous) {
+      final realm = await _createRealm(user, null);
+      return RealmDatabase._(realm, user, sharedPrefs, databaseErrorStream);
+    }
+
+    String? enck;
+    enck = await secureStorage.read(
+      key: '__enck_${user.id}__',
+    );
+
+    if (enck?.isEmpty ?? true) {
+      //64 bit key required by realm
+      enck = SecureKeyGenerator.generateSecureKeyHex(64);
+      await secureStorage.write(
+        key: '__enck_${user.id}__',
+        value: enck,
+      );
+    }
+
+    if (enck?.isEmpty ?? true) throw Exception('No encryption key');
+
+    final enckToIntList = SecureKeyGenerator.toUnit8List(enck!);
+
+    final realm =
+        await _createRealm(user, enckToIntList).catchError((Object err) {
+      throw Exception(err.toString());
+    });
     return RealmDatabase._(realm, user, sharedPrefs, databaseErrorStream);
   }
 
@@ -42,7 +72,10 @@ class RealmDatabase {
     }
   }
 
-  static Future<Realm> _createRealm(AuthenticationUser user) async {
+  static Future<Realm> _createRealm(
+    AuthenticationUser user,
+    Uint8List? enckToIntList,
+  ) async {
     Configuration.defaultRealmName = '${user.id}.realm';
 
     /// on sign out we want  to return empty realm
@@ -66,6 +99,7 @@ class RealmDatabase {
         UserModel.schema,
       ],
       shouldDeleteIfMigrationNeeded: kDebugMode,
+      encryptionKey: enckToIntList,
       // schemaVersion: 3,
       //migrationCallback: _migrationCallback,
     );

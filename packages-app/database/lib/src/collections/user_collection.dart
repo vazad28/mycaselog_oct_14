@@ -15,7 +15,6 @@ class UserCollection extends RealmCollection<UserModel>
 
   @override
   Future<void> add(UserModel model) {
-    // TODO: implement add
     throw UnimplementedError();
   }
 

@@ -2,13 +2,13 @@ part of 'providers.dart';
 
 /// Firebase Auth Instance for use all through the app
 @Riverpod(keepAlive: true)
-FirebaseAuth firebaseAuthInstance(FirebaseAuthInstanceRef ref) {
+FirebaseAuth firebaseAuthInstance(Ref ref) {
   return throw UnimplementedError();
 }
 
 /// Firebase Auth Instance for use all through the app
 @Riverpod(keepAlive: true)
-AuthenticationClient authenticationClient(AuthenticationClientRef ref) {
+AuthenticationClient authenticationClient(Ref ref) {
   return FirebaseAuthenticationClient(
     storage: ref.watch(persistentStorageProvider),
     firebaseAuth: ref.watch(firebaseAuthInstanceProvider),
@@ -18,7 +18,7 @@ AuthenticationClient authenticationClient(AuthenticationClientRef ref) {
 /// Local stream listener provider of the auth state
 @Riverpod(keepAlive: true)
 Stream<AuthenticationUser> authenticationUserStream(
-  AuthenticationUserStreamRef ref,
+  Ref ref,
 ) {
   return ref.watch(authenticationClientProvider).user;
 }
@@ -27,7 +27,7 @@ Stream<AuthenticationUser> authenticationUserStream(
 ///
 /// Exposes User in a non async manner as regular provider
 @Riverpod(keepAlive: true)
-AuthenticationUser authenticationUser(AuthenticationUserRef ref) {
+AuthenticationUser authenticationUser(Ref ref) {
   final asyncValue = ref.watch(authenticationUserStreamProvider);
 
   return asyncValue.maybeWhen(
@@ -37,7 +37,7 @@ AuthenticationUser authenticationUser(AuthenticationUserRef ref) {
 }
 
 @riverpod
-String userID(UserIDRef ref) {
+String userID(Ref ref) {
   return ref.watch(authenticationUserProvider).id;
 }
 
